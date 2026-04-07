@@ -1,0 +1,17 @@
+{
+  "name": "RelayKit",
+  "short_name": "RelayKit",
+  "description": "Self-host Nostr services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
