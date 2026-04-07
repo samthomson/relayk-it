@@ -20,6 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				sans: ['JetBrains Mono Variable', 'ui-monospace', 'monospace'],
 				mono: ['JetBrains Mono Variable', 'ui-monospace', 'monospace'],
 			},
 			colors: {

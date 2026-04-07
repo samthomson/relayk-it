@@ -1,7 +1,7 @@
 import { useSeoMeta } from '@unhead/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Server, Image, Globe, ArrowRight, Box, Settings, Zap } from 'lucide-react';
+import { Server, Image, Globe, ArrowRight, Box, Settings, Zap, Layers } from 'lucide-react';
 
 const Index = () => {
   useSeoMeta({
@@ -38,7 +38,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             Why RelayKit
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
                 <Zap className="h-6 w-6 text-accent" />
@@ -50,16 +50,25 @@ const Index = () => {
             </div>
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                <Settings className="h-6 w-6 text-accent" />
+                <Box className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="font-semibold text-foreground">Manage from one UI</h3>
+              <h3 className="font-semibold text-foreground">Run many services</h3>
               <p className="text-sm text-muted-foreground">
-                Domains, config, and logs in one dashboard
+                Deploy as many relays and Blossoms as needed
               </p>
             </div>
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                <Box className="h-6 w-6 text-accent" />
+                <Layers className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="font-semibold text-foreground">Group into projects</h3>
+              <p className="text-sm text-muted-foreground">
+                Organize services by project or environment
+              </p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                <Settings className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground">Keep full control</h3>
               <p className="text-sm text-muted-foreground">
@@ -127,37 +136,37 @@ const Index = () => {
           </h2>
           <div className="space-y-12">
             <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold font-mono text-sm">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
                 1
               </div>
               <div className="pt-1">
-                <h3 className="text-lg font-semibold mb-2 text-foreground">Connect server + Dokploy</h3>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">Connect your server</h3>
                 <p className="text-muted-foreground">
-                  Link your VPS and Dokploy instance to RelayKit
+                  Link your VPS to RelayKit
                 </p>
               </div>
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold font-mono text-sm">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
                 2
               </div>
               <div className="pt-1">
-                <h3 className="text-lg font-semibold mb-2 text-foreground">Choose preset + set config</h3>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">Choose service + set config</h3>
                 <p className="text-muted-foreground">
-                  Select relay, Blossom, or nsite with your preferred settings
+                  Select relay, Blossom, or nsite with your settings
                 </p>
               </div>
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold font-mono text-sm">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
                 3
               </div>
               <div className="pt-1">
                 <h3 className="text-lg font-semibold mb-2 text-foreground">Deploy and manage from dashboard</h3>
                 <p className="text-muted-foreground">
-                  Monitor logs, update configs, and manage domains in one place
+                  Monitor logs, update configs, manage domains
                 </p>
               </div>
             </div>
@@ -190,7 +199,7 @@ const Index = () => {
       <footer className="border-t border-border px-6 py-8">
         <div className="mx-auto max-w-5xl flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <span className="font-mono font-bold text-foreground">RelayKit</span>
+            <span className="font-bold text-foreground">RelayKit</span>
           </div>
           <div className="flex items-center gap-1">
             <span>Vibed with</span>
