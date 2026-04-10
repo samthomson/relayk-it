@@ -13,16 +13,36 @@ const Index = () => {
   const fullText = 'RELAYKIT';
   
   useEffect(() => {
-    // Wait for Ethnocentric font to load
-    const loadFont = async () => {
-      try {
-        await document.fonts.load('bold 6rem Ethnocentric');
-        await document.fonts.ready;
-      } catch (e) {
-        // Fallback if font loading fails
-        await new Promise(resolve => setTimeout(resolve, 500));
-      }
-      
+    // Foolproof font loading check by measuring text width
+    const checkFontLoaded = () => {
+      return new Promise<void>((resolve) => {
+        const testText = document.createElement('span');
+        testText.style.fontFamily = 'Ethnocentric';
+        testText.style.fontSize = '100px';
+        testText.style.position = 'absolute';
+        testText.style.left = '-9999px';
+        testText.textContent = 'RELAYKIT';
+        document.body.appendChild(testText);
+        
+        let checks = 0;
+        const maxChecks = 50; // Max 5 seconds
+        
+        const checkInterval = setInterval(() => {
+          const width = testText.offsetWidth;
+          checks++;
+          
+          // If width is non-zero and reasonable, font is loaded
+          // Fallback fonts would give different width
+          if (width > 500 || checks >= maxChecks) {
+            clearInterval(checkInterval);
+            document.body.removeChild(testText);
+            resolve();
+          }
+        }, 100);
+      });
+    };
+    
+    checkFontLoaded().then(() => {
       setFontLoaded(true);
       setShowTitle(true);
       
@@ -40,9 +60,7 @@ const Index = () => {
       }, typingSpeed);
       
       return () => clearInterval(typeTimer);
-    };
-    
-    loadFont();
+    });
   }, []);
 
   useSeoMeta({
