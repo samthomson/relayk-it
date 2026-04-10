@@ -30,7 +30,7 @@
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 0 85% 55%;
+    --accent: 0 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -40,7 +40,7 @@
     --input: 0 0% 90%;
     --ring: 0 0% 10%;
 
-    --radius: 0.5rem;
+    --radius: 0;
 
     --sidebar-background: 0 0% 98%;
 

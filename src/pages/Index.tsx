@@ -52,7 +52,7 @@ const Index = () => {
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
                 <Terminal className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground">One install script</h3>
@@ -61,7 +61,7 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
                 <Box className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground">Run many services</h3>
@@ -70,7 +70,7 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
                 <Layers className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground">Group into projects</h3>
@@ -79,7 +79,7 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
                 <Key className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground">NIP-07 auth</h3>
@@ -100,7 +100,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-2 hover:border-accent/50 transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 rounded bg-accent/10 flex items-center justify-center">
+                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
                   <Users className="h-5 w-5 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Self-hosters</h3>
@@ -112,7 +112,7 @@ const Index = () => {
 
             <Card className="border-2 hover:border-accent/50 transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 rounded bg-accent/10 flex items-center justify-center">
+                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
                   <Wrench className="h-5 w-5 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Developers</h3>
@@ -134,7 +134,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="border-2 hover:border-accent/50 transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 rounded bg-accent/10 flex items-center justify-center">
+                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
                   <Server className="h-5 w-5 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Relay</h3>
@@ -153,7 +153,7 @@ const Index = () => {
 
             <Card className="border-2 hover:border-accent/50 transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 rounded bg-accent/10 flex items-center justify-center">
+                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
                   <Image className="h-5 w-5 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Blossom</h3>
@@ -166,7 +166,7 @@ const Index = () => {
 
             <Card className="border-2 hover:border-accent/50 transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 rounded bg-accent/10 flex items-center justify-center">
+                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
                   <Globe className="h-5 w-5 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">nsite gateway</h3>
@@ -188,7 +188,7 @@ const Index = () => {
           </h2>
           <div className="space-y-12">
             <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
                 1
               </div>
               <div className="pt-1">
@@ -200,7 +200,7 @@ const Index = () => {
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
                 2
               </div>
               <div className="pt-1">
@@ -212,7 +212,7 @@ const Index = () => {
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
+              <div className="flex-shrink-0 w-10 h-10 bg-accent text-accent-foreground flex items-center justify-center font-bold text-sm">
                 3
               </div>
               <div className="pt-1">
