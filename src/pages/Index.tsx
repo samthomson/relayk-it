@@ -14,14 +14,10 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 blur-3xl" />
-          <div className="absolute left-0 top-1/3 w-[400px] h-[400px] bg-accent/5 blur-3xl" />
-          <div className="absolute right-0 top-2/3 w-[300px] h-[300px] bg-primary/5 blur-3xl" />
-        </div>
+
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center mb-8">
-            <Badge variant="outline" className="text-accent border-accent/30 bg-accent/5 px-3 py-1">
+            <Badge variant="outline" className="text-muted-foreground border-border px-3 py-1">
               Beta — Work in Progress
             </Badge>
           </div>
@@ -47,15 +43,15 @@ const Index = () => {
       </section>
 
       {/* Why RelayKit Section */}
-      <section className="px-6 py-20 bg-secondary/50 border-y border-border">
+      <section className="px-6 py-20 border-t border-border">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             Why RelayKit
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
-                <Terminal className="h-6 w-6 text-accent" />
+              <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
+                <Terminal className="h-6 w-6 text-foreground" />
               </div>
               <h3 className="font-semibold text-foreground">One install script</h3>
               <p className="text-sm text-muted-foreground">
@@ -63,8 +59,8 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
-                <Box className="h-6 w-6 text-accent" />
+              <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
+                <Box className="h-6 w-6 text-foreground" />
               </div>
               <h3 className="font-semibold text-foreground">Run many services</h3>
               <p className="text-sm text-muted-foreground">
@@ -72,8 +68,8 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
-                <Layers className="h-6 w-6 text-accent" />
+              <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
+                <Layers className="h-6 w-6 text-foreground" />
               </div>
               <h3 className="font-semibold text-foreground">Group into projects</h3>
               <p className="text-sm text-muted-foreground">
@@ -81,8 +77,8 @@ const Index = () => {
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="mx-auto w-12 h-12 bg-accent/10 flex items-center justify-center">
-                <Key className="h-6 w-6 text-accent" />
+              <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
+                <Key className="h-6 w-6 text-foreground" />
               </div>
               <h3 className="font-semibold text-foreground">NIP-07 auth</h3>
               <p className="text-sm text-muted-foreground">
@@ -100,10 +96,10 @@ const Index = () => {
             Who it's for
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 hover:border-accent/50 transition-colors">
+            <Card className="border border-border hover:border-foreground transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
-                  <Users className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 border border-border flex items-center justify-center">
+                  <Users className="h-5 w-5 text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Self-hosters</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -112,10 +108,10 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-accent/50 transition-colors">
+            <Card className="border border-border hover:border-foreground transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
-                  <Wrench className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 border border-border flex items-center justify-center">
+                  <Wrench className="h-5 w-5 text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Developers</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -128,23 +124,23 @@ const Index = () => {
       </section>
 
       {/* What You Can Deploy Section */}
-      <section className="px-6 py-20 bg-secondary/50 border-y border-border">
+      <section className="px-6 py-20 border-t border-border">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What you can deploy
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="border-2 hover:border-accent/50 transition-colors">
+            <Card className="border border-border hover:border-foreground transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
-                  <Server className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 border border-border flex items-center justify-center">
+                  <Server className="h-5 w-5 text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Relay</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   Nostr relay with configurable storage and policies
                 </p>
                 <div className="space-y-2">
-                  <code className="block text-xs text-accent">wss://yourdomain.com</code>
+                  <code className="block text-xs text-muted-foreground">wss://yourdomain.com</code>
                   <div className="text-xs text-muted-foreground space-y-1 pt-2">
                     <div>• nostr-rs-relay</div>
                     <div>• strfry</div>
@@ -153,29 +149,29 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-accent/50 transition-colors">
+            <Card className="border border-border hover:border-foreground transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
-                  <Image className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 border border-border flex items-center justify-center">
+                  <Image className="h-5 w-5 text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Blossom</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   Media server for images, videos, and files
                 </p>
-                <code className="block text-xs text-accent">https://yourdomain.com</code>
+                <code className="block text-xs text-muted-foreground">https://yourdomain.com</code>
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-accent/50 transition-colors">
+            <Card className="border border-border hover:border-foreground transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
-                <div className="w-10 h-10 bg-accent/10 flex items-center justify-center">
-                  <Globe className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 border border-border flex items-center justify-center">
+                  <Globe className="h-5 w-5 text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">nsite gateway</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   Serve static sites from Nostr events (NIP-5A)
                 </p>
-                <code className="block text-xs text-accent">https://yourdomain.com</code>
+                <code className="block text-xs text-muted-foreground">https://yourdomain.com</code>
               </CardContent>
             </Card>
           </div>
@@ -229,10 +225,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="relative isolate px-6 py-24 sm:py-32 bg-secondary/50 border-t border-border">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute right-1/3 bottom-0 w-[500px] h-[500px] bg-accent/10 blur-3xl" />
-        </div>
+      <section className="relative isolate px-6 py-24 sm:py-32 border-t border-border">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Run your own Nostr stack.
