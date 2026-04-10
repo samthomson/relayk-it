@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Server, Image, Globe, ArrowRight, Box, Zap, Layers, Terminal, Key, Users, Wrench } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useState, useEffect } from 'react';
+import { NostrEventsBackground } from '@/components/NostrEventsBackground';
 import { RubixLoader } from '@samthomson/rubix-loader';
 
 const Index = () => {
@@ -69,7 +70,9 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <NostrEventsBackground />
+      
       {/* Hero Section */}
       <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div className="text-center">
