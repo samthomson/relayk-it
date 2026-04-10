@@ -14,7 +14,15 @@ const Index = () => {
   
   useEffect(() => {
     // Wait for Ethnocentric font to load
-    document.fonts.ready.then(() => {
+    const loadFont = async () => {
+      try {
+        await document.fonts.load('bold 6rem Ethnocentric');
+        await document.fonts.ready;
+      } catch (e) {
+        // Fallback if font loading fails
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+      
       setFontLoaded(true);
       setShowTitle(true);
       
@@ -32,7 +40,9 @@ const Index = () => {
       }, typingSpeed);
       
       return () => clearInterval(typeTimer);
-    });
+    };
+    
+    loadFont();
   }, []);
 
   useSeoMeta({
