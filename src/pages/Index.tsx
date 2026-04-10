@@ -23,13 +23,9 @@ const Index = () => {
               Beta — Work in Progress
             </Badge>
           </div>
-          <div className="mb-8 flex justify-center">
-            <img 
-              src="/relaykit-logo.png" 
-              alt="RelayKit" 
-              className="h-20 sm:h-24 w-auto"
-            />
-          </div>
+          <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none">
+            RelayKit
+          </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
             One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways.
           </p>

@@ -22,7 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['JetBrains Mono Variable', 'ui-monospace', 'monospace'],
 				mono: ['JetBrains Mono Variable', 'ui-monospace', 'monospace'],
-				ethnocentric: ['Ethnocentric', 'JetBrains Mono Variable', 'monospace'],
+				display: ['DisplayFont', 'Rajdhani', 'JetBrains Mono Variable', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
