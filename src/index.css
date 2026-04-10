@@ -28,6 +28,13 @@
   animation: blink 1s steps(1, end) infinite;
 }
 
+.cursor-bar {
+  display: inline-block;
+  width: 0.5rem;
+  height: 1cap;
+  vertical-align: baseline;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

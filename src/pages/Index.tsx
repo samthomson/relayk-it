@@ -65,7 +65,7 @@ const Index = () => {
             {showTitle && (
               <div className="relative inline-block">
                 <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
-                  {displayedText}<span className="inline-block w-2 sm:w-3 h-[4.5rem] sm:h-[6rem] lg:h-[8rem] bg-foreground animate-blink align-text-bottom"></span>
+                  {displayedText}<span className="cursor-bar bg-foreground animate-blink sm:w-3"></span>
                 </span>
               </div>
             )}
