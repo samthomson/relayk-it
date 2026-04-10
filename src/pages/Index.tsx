@@ -52,13 +52,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Beta Banner */}
-      <div className="bg-foreground text-background py-3 px-6 text-center text-sm font-semibold">
-        Currently in beta — Contributions welcome
-      </div>
-
       {/* Hero Section */}
-      <section className="relative isolate px-6 pt-24 pb-24 sm:pt-32 sm:pb-32">
+      <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div className="text-center">
           <div className="flex justify-center mb-10">
             <RubixLoader 
@@ -78,7 +73,7 @@ const Index = () => {
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
             One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-accent-foreground text-base px-8"
@@ -89,6 +84,11 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
+          </div>
+          <div className="flex justify-center">
+            <div className="border-2 border-foreground px-6 py-3 text-sm font-bold uppercase tracking-wider">
+              Currently in Beta — Contributions Welcome
+            </div>
           </div>
         </div>
       </section>
