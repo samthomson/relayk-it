@@ -8,12 +8,14 @@ import { useState, useEffect } from 'react';
 const Index = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [fontLoaded, setFontLoaded] = useState(false);
+  const [showTitle, setShowTitle] = useState(false);
   const fullText = 'RELAYKIT';
   
   useEffect(() => {
     // Wait for Ethnocentric font to load
     document.fonts.ready.then(() => {
       setFontLoaded(true);
+      setShowTitle(true);
       
       // Start typing animation after font loads
       let currentIndex = 0;
@@ -60,10 +62,15 @@ const Index = () => {
               <line x1="56.67" y1="56.67" x2="90" y2="90" stroke="currentColor" strokeWidth="1.5"/>
             </svg>
           </div>
-          <div className="flex justify-center items-center mb-10">
-            <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none min-h-[1.2em]" style={{ visibility: fontLoaded ? 'visible' : 'hidden' }}>
-              {displayedText}<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink ml-0" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
-            </h1>
+          <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex items-center justify-center">
+            {showTitle && (
+              <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none relative inline-block">
+                <span className="relative">
+                  {displayedText}
+                  <span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink absolute" style={{ height: '0.8em', top: '50%', transform: 'translateY(-50%)', right: '-0.5rem' }}></span>
+                </span>
+              </h1>
+            )}
           </div>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
             One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
