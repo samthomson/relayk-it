@@ -33,8 +33,8 @@ const Index = () => {
               <line x1="56.67" y1="56.67" x2="90" y2="90" stroke="currentColor" strokeWidth="1.5"/>
             </svg>
           </div>
-          <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none text-center">
-            RelayKit<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-pulse ml-2" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
+          <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none text-center whitespace-nowrap">
+            RelayKit<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-pulse ml-1" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
             One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
