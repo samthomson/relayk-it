@@ -37,7 +37,7 @@ const Index = () => {
             RelayKit
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            <span className="inline-block w-0.5 h-6 bg-foreground mr-1 animate-pulse align-middle"></span>One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
+            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -55,12 +55,12 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="px-6 py-20 border-t border-border">
-        <div className="mx-auto max-w-5xl">
+      <section className="px-6 py-20 border-t border-border overflow-hidden">
+        <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What it does
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-full">
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Terminal className="h-6 w-6 text-foreground" />
@@ -145,8 +145,8 @@ const Index = () => {
       </section>
 
       {/* What You Can Deploy Section */}
-      <section className="px-6 py-20 border-t border-border">
-        <div className="mx-auto max-w-5xl">
+      <section className="px-6 py-20 border-t border-border overflow-hidden">
+        <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What you can deploy
           </h2>
@@ -200,7 +200,7 @@ const Index = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="px-6 py-20">
+      <section className="px-6 py-20 overflow-hidden">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             How it works
@@ -268,48 +268,41 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t border-border px-6 py-12">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left text-sm">
-            <div>
-              <span className="font-bold text-foreground text-base">RelayKit</span>
-            </div>
-            
-            <div className="space-y-2">
-              <div>
-                <span className="text-muted-foreground">Hosted on </span>
-                <a
-                  href="https://relayk.it"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:underline font-semibold"
-                >
-                  RelayKit
-                </a>
-              </div>
-              <div>
-                <span className="text-muted-foreground">Vibed with </span>
-                <a
-                  href="https://shakespeare.diy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:underline font-semibold"
-                >
-                  Shakespeare
-                </a>
-              </div>
-            </div>
+        <div className="mx-auto max-w-3xl text-center space-y-4">
+          <div>
+            <span className="font-bold text-foreground text-lg">RelayKit</span>
+          </div>
+          
+          <div className="flex items-center justify-center gap-3 text-sm">
+            <a
+              href="https://relayk.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:underline font-semibold"
+            >
+              Hosted on RelayKit
+            </a>
+            <span className="text-border">•</span>
+            <a
+              href="https://shakespeare.diy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:underline font-semibold"
+            >
+              Vibed with Shakespeare
+            </a>
+          </div>
 
-            <div>
-              <div className="text-muted-foreground mb-1">Follow on Nostr for updates:</div>
-              <a
-                href="https://ditto.pub/follow/npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:underline font-semibold text-base"
-              >
-                @sam
-              </a>
-            </div>
+          <div className="text-sm">
+            <span className="text-muted-foreground">Follow on Nostr for updates: </span>
+            <a
+              href="https://ditto.pub/follow/npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:underline font-semibold"
+            >
+              @sam
+            </a>
           </div>
         </div>
       </footer>
