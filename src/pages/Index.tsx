@@ -11,11 +11,13 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 blur-3xl" />
+          <div className="absolute left-0 top-1/3 w-[400px] h-[400px] bg-accent/5 blur-3xl" />
+          <div className="absolute right-0 top-2/3 w-[300px] h-[300px] bg-primary/5 blur-3xl" />
         </div>
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center mb-8">
@@ -45,7 +47,7 @@ const Index = () => {
       </section>
 
       {/* Why RelayKit Section */}
-      <section className="px-6 py-20 bg-secondary/30">
+      <section className="px-6 py-20 bg-secondary/50 border-y border-border">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             Why RelayKit
@@ -126,7 +128,7 @@ const Index = () => {
       </section>
 
       {/* What You Can Deploy Section */}
-      <section className="px-6 py-20 bg-secondary/30">
+      <section className="px-6 py-20 bg-secondary/50 border-y border-border">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What you can deploy
@@ -227,9 +229,9 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="relative isolate px-6 py-24 sm:py-32 bg-secondary/30">
+      <section className="relative isolate px-6 py-24 sm:py-32 bg-secondary/50 border-t border-border">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute right-1/3 bottom-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute right-1/3 bottom-0 w-[500px] h-[500px] bg-accent/10 blur-3xl" />
         </div>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-4xl font-bold text-foreground mb-4">
