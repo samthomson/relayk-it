@@ -52,7 +52,7 @@ const Index = () => {
         <div className="text-center">
           <div className="flex justify-center mb-10">
             <RubixLoader 
-              size={160}
+              size={480}
               colors={['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFFFFF']}
             />
           </div>
@@ -62,7 +62,7 @@ const Index = () => {
                 <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
                   {displayedText}
                 </span>
-                <span className="w-1 sm:w-1.5 bg-foreground animate-blink text-7xl sm:text-8xl lg:text-9xl" style={{ height: '1em' }}></span>
+                <span className="w-1 sm:w-1.5 bg-foreground animate-blink" style={{ height: '0.7em' }}></span>
               </div>
             )}
           </div>
