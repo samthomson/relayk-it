@@ -10,6 +10,8 @@ const Index = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [fontLoaded, setFontLoaded] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
+  const [cursorHeight, setCursorHeight] = useState(0);
+  const textRef = useState<HTMLSpanElement | null>(null)[0];
   const fullText = 'RELAYKIT';
   
   useEffect(() => {
@@ -17,6 +19,14 @@ const Index = () => {
     document.fonts.ready.then(() => {
       setFontLoaded(true);
       setShowTitle(true);
+      
+      // Measure the actual text height after a brief delay
+      setTimeout(() => {
+        const span = document.querySelector('[data-title-text]') as HTMLElement;
+        if (span) {
+          setCursorHeight(span.offsetHeight);
+        }
+      }, 100);
       
       // Start typing animation after font loads
       let currentIndex = 0;
@@ -59,10 +69,16 @@ const Index = () => {
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
             {showTitle && (
               <div className="flex items-center">
-                <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
+                <span 
+                  data-title-text
+                  className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none"
+                >
                   {displayedText}
                 </span>
-                <span className="inline-block w-2 sm:w-3 bg-foreground animate-blink h-[4.5rem] sm:h-[6rem] lg:h-[7.5rem]"></span>
+                <span 
+                  className="inline-block w-2 sm:w-3 bg-foreground animate-blink" 
+                  style={{ height: cursorHeight ? `${cursorHeight}px` : '4.5rem' }}
+                ></span>
               </div>
             )}
           </div>
