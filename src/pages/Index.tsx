@@ -68,17 +68,10 @@ const Index = () => {
           </div>
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
             {showTitle && (
-              <div className="flex items-center">
-                <span 
-                  data-title-text
-                  className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none"
-                >
-                  {displayedText}
+              <div className="relative inline-block">
+                <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
+                  {displayedText}<span className="inline-block w-2 sm:w-3 h-[1em] bg-foreground animate-blink align-bottom"></span>
                 </span>
-                <span 
-                  className="inline-block w-2 sm:w-3 bg-foreground animate-blink" 
-                  style={{ height: cursorHeight ? `${cursorHeight}px` : '4.5rem' }}
-                ></span>
               </div>
             )}
           </div>
