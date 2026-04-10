@@ -51,9 +51,9 @@ const Index = () => {
               colors={['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFFFFF']}
             />
           </div>
-          <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
+          <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full px-4">
             {showTitle && (
-              <div className="title-cursor-container text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
+              <div className="title-cursor-container text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none max-w-full">
                 <span>{displayedText}</span>
                 <span className="cursor-bar bg-foreground animate-blink sm:w-3"></span>
               </div>
