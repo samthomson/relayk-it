@@ -58,11 +58,11 @@ const Index = () => {
           </div>
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
             {showTitle && (
-              <div className="flex items-end">
+              <div className="flex items-center">
                 <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
                   {displayedText}
                 </span>
-                <span className="inline-block w-2 sm:w-3 bg-foreground animate-blink mb-[0.08em]" style={{ height: '0.9em' }}></span>
+                <span className="inline-block w-2 sm:w-3 bg-foreground animate-blink h-[4.5rem] sm:h-[6rem] lg:h-[7.5rem]"></span>
               </div>
             )}
           </div>
