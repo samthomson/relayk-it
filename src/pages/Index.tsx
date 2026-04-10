@@ -33,11 +33,11 @@ const Index = () => {
               <line x1="56.67" y1="56.67" x2="90" y2="90" stroke="currentColor" strokeWidth="1.5"/>
             </svg>
           </div>
-          <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none">
-            RelayKit
+          <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none flex items-center justify-center gap-2">
+            <span>RelayKit</span><span className="inline-block w-1 bg-foreground animate-pulse" style={{ height: '0.8em' }}></span>
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            <span className="inline-block w-0.5 h-6 bg-foreground mr-1 align-middle animate-pulse"></span>One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
+            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -145,12 +145,12 @@ const Index = () => {
       </section>
 
       {/* What You Can Deploy Section */}
-      <section className="px-6 py-20 border-t border-border overflow-hidden">
-        <div className="mx-auto max-w-7xl">
+      <section className="px-6 py-20 border-t border-border">
+        <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What you can deploy
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="border border-border hover:border-foreground transition-colors">
               <CardContent className="pt-8 pb-6 px-6 space-y-4">
                 <div className="w-10 h-10 border border-border flex items-center justify-center">
@@ -161,7 +161,7 @@ const Index = () => {
                   Nostr relays with configurable storage and policies
                 </p>
                 <div className="space-y-2">
-                  <code className="block text-xs text-muted-foreground">wss://relay.yourdomain.com</code>
+                  <code className="block text-[10px] text-muted-foreground break-all">wss://relay.yourdomain.com</code>
                   <div className="text-xs text-muted-foreground space-y-1 pt-2">
                     <div>• nostr-rs-relay</div>
                     <div>• strfry</div>
@@ -179,7 +179,7 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   Media server for images, videos, and files
                 </p>
-                <code className="block text-xs text-muted-foreground">https://blossom.yourdomain.com</code>
+                <code className="block text-[10px] text-muted-foreground break-all">https://blossom.yourdomain.com</code>
               </CardContent>
             </Card>
 
@@ -192,7 +192,7 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   Serve static sites from Nostr events (NIP-5A)
                 </p>
-                <code className="block text-xs text-muted-foreground">https://yourdomain.com</code>
+                <code className="block text-[10px] text-muted-foreground break-all">https://yourdomain.com</code>
               </CardContent>
             </Card>
           </div>
