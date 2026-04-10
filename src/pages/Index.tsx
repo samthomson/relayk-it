@@ -55,7 +55,7 @@ const Index = () => {
             </svg>
           </div>
           <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none text-center whitespace-nowrap min-h-[1.2em]">
-            {displayedText}<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-pulse ml-1" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
+            {displayedText}<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
             One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
