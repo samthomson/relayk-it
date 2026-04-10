@@ -64,9 +64,12 @@ const Index = () => {
           </div>
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex items-center justify-center">
             {showTitle && (
-              <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none text-center">
-                {displayedText}<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
-              </h1>
+              <div className="inline-flex items-center justify-center">
+                <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none whitespace-nowrap">
+                  {displayedText}
+                </h1>
+                <span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink ml-1" style={{ height: '0.8em' }}></span>
+              </div>
             )}
           </div>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
