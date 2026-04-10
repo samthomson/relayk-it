@@ -1,0 +1,22 @@
+{
+  "relays": [
+    "wss://relay.ditto.pub",
+    "wss://relay.nsite.lol",
+    "wss://relay.nosto.re",
+    "wss://relay.primal.net",
+    "wss://relay.damus.io",
+    "wss://purplerelay.com",
+    "wss://relay.relayk.it"
+  ],
+  "servers": [
+    "https://blossom.primal.net",
+    "https://cdn.sovbit.host",
+    "https://blossom.relayk.it"
+  ],
+  "id": "relaykit",
+  "title": "relaykit",
+  "fallback": "/index.html",
+  "gatewayHostnames": [
+    ""
+  ]
+}

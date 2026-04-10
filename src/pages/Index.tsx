@@ -18,16 +18,20 @@ const Index = () => {
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
         </div>
         <div className="mx-auto max-w-3xl text-center">
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
             <Badge variant="outline" className="text-accent border-accent/30 bg-accent/5 px-3 py-1">
               Beta — Work in Progress
             </Badge>
           </div>
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-foreground mb-6">
-            Self-host Nostr services
-          </h1>
-          <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-            One install script. One dashboard. Deploy relays, Blossom, and nsites in minutes.
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/relaykit-logo.png" 
+              alt="RelayKit" 
+              className="h-20 sm:h-24 w-auto"
+            />
+          </div>
+          <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
+            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
