@@ -10,8 +10,6 @@ const Index = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [fontLoaded, setFontLoaded] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
-  const [cursorHeight, setCursorHeight] = useState(0);
-  const textRef = useState<HTMLSpanElement | null>(null)[0];
   const fullText = 'RELAYKIT';
   
   useEffect(() => {
@@ -19,14 +17,6 @@ const Index = () => {
     document.fonts.ready.then(() => {
       setFontLoaded(true);
       setShowTitle(true);
-      
-      // Measure the actual text height after a brief delay
-      setTimeout(() => {
-        const span = document.querySelector('[data-title-text]') as HTMLElement;
-        if (span) {
-          setCursorHeight(span.offsetHeight);
-        }
-      }, 100);
       
       // Start typing animation after font loads
       let currentIndex = 0;
@@ -63,10 +53,8 @@ const Index = () => {
           </div>
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
             {showTitle && (
-              <div className="flex items-center gap-0">
-                <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none flex items-center">
-                  {displayedText}
-                </span>
+              <div className="title-cursor-container text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
+                <span>{displayedText}</span>
                 <span className="cursor-bar bg-foreground animate-blink sm:w-3"></span>
               </div>
             )}
