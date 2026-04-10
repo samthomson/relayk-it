@@ -16,16 +16,16 @@ const Index = () => {
       <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
 
         <div className="mx-auto max-w-3xl text-center">
-          <div className="flex justify-center mb-8">
-            <Badge variant="outline" className="text-muted-foreground border-border px-3 py-1">
-              Beta — Work in Progress
-            </Badge>
+          <div className="flex justify-center mb-10">
+            <div className="w-16 h-16 border-2 border-foreground flex items-center justify-center">
+              <Box className="h-10 w-10 text-foreground" />
+            </div>
           </div>
           <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none">
             RelayKit
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways.
+            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -42,11 +42,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why RelayKit Section */}
+      {/* Features Section */}
       <section className="px-6 py-20 border-t border-border">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
-            Why RelayKit
+            What it does
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center space-y-4">
@@ -71,9 +71,9 @@ const Index = () => {
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Layers className="h-6 w-6 text-foreground" />
               </div>
-              <h3 className="font-semibold text-foreground">Group into projects</h3>
+              <h3 className="font-semibold text-foreground">Link your domains</h3>
               <p className="text-sm text-muted-foreground">
-                Organize services by project or environment
+                Connect custom domains to your services
               </p>
             </div>
             <div className="text-center space-y-4">
@@ -115,7 +115,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Developers</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Spin up test infrastructure and development environments in seconds.
+                  Spin up disposable test infrastructure and dev environments in seconds.
                 </p>
               </CardContent>
             </Card>
@@ -135,12 +135,12 @@ const Index = () => {
                 <div className="w-10 h-10 border border-border flex items-center justify-center">
                   <Server className="h-5 w-5 text-foreground" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">Relay</h3>
+                <h3 className="text-lg font-semibold text-foreground">Relays</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  Nostr relay with configurable storage and policies
+                  Nostr relays with configurable storage and policies
                 </p>
                 <div className="space-y-2">
-                  <code className="block text-xs text-muted-foreground">wss://yourdomain.com</code>
+                  <code className="block text-xs text-muted-foreground">wss://relay.yourdomain.com</code>
                   <div className="text-xs text-muted-foreground space-y-1 pt-2">
                     <div>• nostr-rs-relay</div>
                     <div>• strfry</div>
@@ -158,7 +158,7 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   Media server for images, videos, and files
                 </p>
-                <code className="block text-xs text-muted-foreground">https://yourdomain.com</code>
+                <code className="block text-xs text-muted-foreground">https://blossom.yourdomain.com</code>
               </CardContent>
             </Card>
 
@@ -230,9 +230,11 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Run your own Nostr stack.
           </h2>
-          <p className="text-muted-foreground mb-8">
-            Currently in beta. Contributions welcome.
-          </p>
+          <div className="mb-12 flex justify-center">
+            <Badge variant="outline" className="text-muted-foreground border-border px-4 py-2 text-base">
+              Currently in beta — Contributions welcome
+            </Badge>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
@@ -245,22 +247,45 @@ const Index = () => {
               </a>
             </Button>
           </div>
+          <div className="mt-8 text-center">
+            <a 
+              href="https://relayk.it" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Hosted on RelayKit
+            </a>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border px-6 py-8">
-        <div className="mx-auto max-w-5xl flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-foreground">RelayKit</span>
+      <footer className="border-t border-border px-6 py-12">
+        <div className="mx-auto max-w-5xl space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-foreground">RelayKit</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="text-muted-foreground">Follow on Nostr for updates:</span>
+              <a
+                href="https://ditto.pub/follow/npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:underline font-medium"
+              >
+                @sam
+              </a>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <span>Vibed with</span>
+          <div className="text-center text-sm text-muted-foreground">
+            <span>Vibed with </span>
             <a
               href="https://shakespeare.diy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent hover:underline font-medium"
+              className="text-foreground hover:underline"
             >
               Shakespeare
             </a>
