@@ -37,8 +37,8 @@
 .cursor-bar {
   display: inline-block;
   width: 0.5rem;
-  height: 1.2cap;
-  transform: translateY(-0.05em);
+  height: 1.35cap;
+  transform: translateY(-0.08em);
 }
 
 @layer base {
