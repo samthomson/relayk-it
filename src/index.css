@@ -35,8 +35,10 @@
 }
 
 .cursor-bar {
+  display: inline-block;
   width: 0.5rem;
-  align-self: stretch;
+  height: 1.2cap;
+  transform: translateY(-0.05em);
 }
 
 @layer base {
