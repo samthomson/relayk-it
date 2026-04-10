@@ -52,17 +52,17 @@ const Index = () => {
         <div className="text-center">
           <div className="flex justify-center mb-10">
             <RubixLoader 
-              size={480}
+              size={320}
               colors={['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFFFFF']}
             />
           </div>
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
             {showTitle && (
-              <div className="flex items-center leading-none">
+              <div className="flex items-center">
                 <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
                   {displayedText}
                 </span>
-                <span className="w-1 sm:w-1.5 bg-foreground animate-blink" style={{ height: '0.7em' }}></span>
+                <span className="inline-block w-1.5 sm:w-2 bg-foreground animate-blink self-stretch"></span>
               </div>
             )}
           </div>
