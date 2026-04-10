@@ -36,12 +36,9 @@ const Index = () => {
           <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none">
             RelayKit
           </h1>
-          <div className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            <span className="inline-flex items-center gap-1">
-              <span className="inline-block w-[2px] h-[1.2em] bg-foreground animate-pulse"></span>
-              One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
-            </span>
-          </div>
+          <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
+            <span className="inline-block w-0.5 h-6 bg-foreground mr-1 align-middle animate-pulse"></span>One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
@@ -59,12 +56,12 @@ const Index = () => {
 
       {/* Features Section */}
       <section className="px-6 py-20 border-t border-border">
-        <div className="mx-auto max-w-6xl">
+        <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What it does
           </h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="text-center space-y-4 w-full sm:w-auto sm:flex-1 sm:min-w-[180px] sm:max-w-[220px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Terminal className="h-6 w-6 text-foreground" />
               </div>
@@ -73,7 +70,7 @@ const Index = () => {
                 Run on any VPS with a single command
               </p>
             </div>
-            <div className="text-center space-y-4 w-full sm:w-auto sm:flex-1 sm:min-w-[180px] sm:max-w-[220px]">
+            <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Box className="h-6 w-6 text-foreground" />
               </div>
@@ -82,7 +79,7 @@ const Index = () => {
                 Deploy as many nostr services (relays, Blossoms, nsites) as needed
               </p>
             </div>
-            <div className="text-center space-y-4 w-full sm:w-auto sm:flex-1 sm:min-w-[180px] sm:max-w-[220px]">
+            <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Layers className="h-6 w-6 text-foreground" />
               </div>
@@ -91,7 +88,7 @@ const Index = () => {
                 Organize services by project or environment
               </p>
             </div>
-            <div className="text-center space-y-4 w-full sm:w-auto sm:flex-1 sm:min-w-[180px] sm:max-w-[220px]">
+            <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Globe className="h-6 w-6 text-foreground" />
               </div>
@@ -100,7 +97,7 @@ const Index = () => {
                 Connect custom domains to your services
               </p>
             </div>
-            <div className="text-center space-y-4 w-full sm:w-auto sm:flex-1 sm:min-w-[180px] sm:max-w-[220px]">
+            <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Key className="h-6 w-6 text-foreground" />
               </div>
