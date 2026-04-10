@@ -12,20 +12,32 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
+      {/* Beta Banner */}
+      <div className="bg-foreground text-background py-3 px-6 text-center text-sm font-semibold">
+        Currently in beta — Contributions welcome
+      </div>
 
+      {/* Hero Section */}
+      <section className="relative isolate px-6 pt-24 pb-24 sm:pt-32 sm:pb-32">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center mb-10">
-            <div className="w-16 h-16 border-2 border-foreground flex items-center justify-center">
-              <Box className="h-10 w-10 text-foreground" />
-            </div>
+            <svg className="w-40 h-40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="80" height="80" stroke="currentColor" strokeWidth="2" fill="none"/>
+              <line x1="10" y1="43.33" x2="90" y2="43.33" stroke="currentColor" strokeWidth="2"/>
+              <line x1="10" y1="56.67" x2="90" y2="56.67" stroke="currentColor" strokeWidth="2"/>
+              <line x1="43.33" y1="10" x2="43.33" y2="90" stroke="currentColor" strokeWidth="2"/>
+              <line x1="56.67" y1="10" x2="56.67" y2="90" stroke="currentColor" strokeWidth="2"/>
+              <line x1="10" y1="10" x2="43.33" y2="43.33" stroke="currentColor" strokeWidth="1.5"/>
+              <line x1="56.67" y1="10" x2="90" y2="43.33" stroke="currentColor" strokeWidth="1.5"/>
+              <line x1="10" y1="56.67" x2="43.33" y2="90" stroke="currentColor" strokeWidth="1.5"/>
+              <line x1="56.67" y1="56.67" x2="90" y2="90" stroke="currentColor" strokeWidth="1.5"/>
+            </svg>
           </div>
           <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none">
             RelayKit
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
+            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.<span className="inline-block w-2 h-5 bg-foreground ml-1 animate-pulse"></span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -48,7 +60,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What it does
           </h2>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Terminal className="h-6 w-6 text-foreground" />
@@ -64,12 +76,21 @@ const Index = () => {
               </div>
               <h3 className="font-semibold text-foreground">Run many services</h3>
               <p className="text-sm text-muted-foreground">
-                Deploy as many relays and Blossoms as needed
+                Deploy as many nostr services (relays, Blossoms, nsites) as needed
               </p>
             </div>
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Layers className="h-6 w-6 text-foreground" />
+              </div>
+              <h3 className="font-semibold text-foreground">Group into projects</h3>
+              <p className="text-sm text-muted-foreground">
+                Organize services by project or environment
+              </p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
+                <Globe className="h-6 w-6 text-foreground" />
               </div>
               <h3 className="font-semibold text-foreground">Link your domains</h3>
               <p className="text-sm text-muted-foreground">
@@ -115,7 +136,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Developers</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Spin up disposable test infrastructure and dev environments in seconds.
+                  Spin up disposable test infrastructure for dev environments in seconds.
                 </p>
               </CardContent>
             </Card>
@@ -227,14 +248,9 @@ const Index = () => {
       {/* Final CTA Section */}
       <section className="relative isolate px-6 py-24 sm:py-32 border-t border-border">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl font-bold text-foreground mb-8">
             Run your own Nostr stack.
           </h2>
-          <div className="mb-12 flex justify-center">
-            <Badge variant="outline" className="text-muted-foreground border-border px-4 py-2 text-base">
-              Currently in beta — Contributions welcome
-            </Badge>
-          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
@@ -247,27 +263,38 @@ const Index = () => {
               </a>
             </Button>
           </div>
-          <div className="mt-8 text-center">
-            <a 
-              href="https://relayk.it" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Hosted on RelayKit
-            </a>
-          </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-border px-6 py-12">
-        <div className="mx-auto max-w-5xl space-y-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-sm">
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
             <div className="flex items-center gap-2">
               <span className="font-bold text-foreground">RelayKit</span>
             </div>
-            <div className="flex items-center gap-1">
+            
+            <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+              <a
+                href="https://relayk.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Hosted on RelayKit
+              </a>
+              <span className="hidden sm:inline text-border">|</span>
+              <a
+                href="https://shakespeare.diy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Vibed with Shakespeare
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2">
               <span className="text-muted-foreground">Follow on Nostr for updates:</span>
               <a
                 href="https://ditto.pub/follow/npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5"
@@ -278,17 +305,6 @@ const Index = () => {
                 @sam
               </a>
             </div>
-          </div>
-          <div className="text-center text-sm text-muted-foreground">
-            <span>Vibed with </span>
-            <a
-              href="https://shakespeare.diy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:underline"
-            >
-              Shakespeare
-            </a>
           </div>
         </div>
       </footer>
