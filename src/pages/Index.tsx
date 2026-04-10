@@ -7,23 +7,29 @@ import { useState, useEffect } from 'react';
 
 const Index = () => {
   const [displayedText, setDisplayedText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
+  const [fontLoaded, setFontLoaded] = useState(false);
   const fullText = 'RELAYKIT';
   
   useEffect(() => {
-    let currentIndex = 0;
-    const typingSpeed = 150; // milliseconds per character
-    
-    const typeTimer = setInterval(() => {
-      if (currentIndex < fullText.length) {
-        setDisplayedText(fullText.substring(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        clearInterval(typeTimer);
-      }
-    }, typingSpeed);
-    
-    return () => clearInterval(typeTimer);
+    // Wait for Ethnocentric font to load
+    document.fonts.ready.then(() => {
+      setFontLoaded(true);
+      
+      // Start typing animation after font loads
+      let currentIndex = 0;
+      const typingSpeed = 150; // milliseconds per character
+      
+      const typeTimer = setInterval(() => {
+        if (currentIndex < fullText.length) {
+          setDisplayedText(fullText.substring(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typeTimer);
+        }
+      }, typingSpeed);
+      
+      return () => clearInterval(typeTimer);
+    });
   }, []);
 
   useSeoMeta({
@@ -54,9 +60,11 @@ const Index = () => {
               <line x1="56.67" y1="56.67" x2="90" y2="90" stroke="currentColor" strokeWidth="1.5"/>
             </svg>
           </div>
-          <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground mb-10 font-display uppercase leading-none text-center whitespace-nowrap min-h-[1.2em]">
-            {displayedText}<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
-          </h1>
+          <div className="flex justify-center items-center mb-10">
+            <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none min-h-[1.2em]" style={{ visibility: fontLoaded ? 'visible' : 'hidden' }}>
+              {displayedText}<span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink ml-0" style={{ height: '0.8em', verticalAlign: 'middle' }}></span>
+            </h1>
+          </div>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
             One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
           </p>
