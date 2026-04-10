@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Server, Image, Globe, ArrowRight, Box, Zap, Layers, Terminal, Key, Users, Wrench } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useState, useEffect } from 'react';
+import { RubixLoader } from '@samthomson/rubix-loader';
 
 const Index = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -48,27 +49,20 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative isolate px-6 pt-24 pb-24 sm:pt-32 sm:pb-32">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="text-center">
           <div className="flex justify-center mb-10">
-            <svg className="w-40 h-40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="10" width="80" height="80" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <line x1="10" y1="43.33" x2="90" y2="43.33" stroke="currentColor" strokeWidth="2"/>
-              <line x1="10" y1="56.67" x2="90" y2="56.67" stroke="currentColor" strokeWidth="2"/>
-              <line x1="43.33" y1="10" x2="43.33" y2="90" stroke="currentColor" strokeWidth="2"/>
-              <line x1="56.67" y1="10" x2="56.67" y2="90" stroke="currentColor" strokeWidth="2"/>
-              <line x1="10" y1="10" x2="43.33" y2="43.33" stroke="currentColor" strokeWidth="1.5"/>
-              <line x1="56.67" y1="10" x2="90" y2="43.33" stroke="currentColor" strokeWidth="1.5"/>
-              <line x1="10" y1="56.67" x2="43.33" y2="90" stroke="currentColor" strokeWidth="1.5"/>
-              <line x1="56.67" y1="56.67" x2="90" y2="90" stroke="currentColor" strokeWidth="1.5"/>
-            </svg>
+            <RubixLoader 
+              size={160}
+              colors={['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFFFFF']}
+            />
           </div>
-          <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex items-center justify-center">
+          <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full">
             {showTitle && (
-              <div className="inline-flex items-center justify-center">
-                <h1 className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none whitespace-nowrap">
+              <div className="flex items-center">
+                <span className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-[0.2em] text-foreground font-display uppercase leading-none">
                   {displayedText}
-                </h1>
-                <span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink ml-1" style={{ height: '0.8em' }}></span>
+                </span>
+                <span className="inline-block w-1 sm:w-1.5 bg-foreground animate-blink" style={{ height: '0.8em' }}></span>
               </div>
             )}
           </div>
