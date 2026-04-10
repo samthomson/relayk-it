@@ -31,8 +31,9 @@
 .cursor-bar {
   display: inline-block;
   width: 0.5rem;
-  height: 1.1cap;
-  vertical-align: baseline;
+  height: 1.15cap;
+  vertical-align: text-bottom;
+  margin-bottom: -0.05em;
 }
 
 @layer base {
