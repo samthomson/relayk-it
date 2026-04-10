@@ -37,7 +37,7 @@ const Index = () => {
             RelayKit
           </h1>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.<span className="inline-block w-2 h-5 bg-foreground ml-1 animate-pulse"></span>
+            <span className="inline-block w-0.5 h-6 bg-foreground mr-1 animate-pulse align-middle"></span>One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -60,7 +60,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
             What it does
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             <div className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Terminal className="h-6 w-6 text-foreground" />
@@ -83,7 +83,7 @@ const Index = () => {
               <div className="mx-auto w-12 h-12 border border-border flex items-center justify-center">
                 <Layers className="h-6 w-6 text-foreground" />
               </div>
-              <h3 className="font-semibold text-foreground">Group into projects</h3>
+              <h3 className="font-semibold text-foreground">Group into projects / envs</h3>
               <p className="text-sm text-muted-foreground">
                 Organize services by project or environment
               </p>
@@ -136,7 +136,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Developers</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Spin up disposable test infrastructure for dev environments in seconds.
+                  Spin up disposable test infrastructure for dev environments in seconds. Finally a nostr testnet.
                 </p>
               </CardContent>
             </Card>
@@ -268,39 +268,44 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t border-border px-6 py-12">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">RelayKit</span>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left text-sm">
+            <div>
+              <span className="font-bold text-foreground text-base">RelayKit</span>
             </div>
             
-            <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-              <a
-                href="https://relayk.it"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Hosted on RelayKit
-              </a>
-              <span className="hidden sm:inline text-border">|</span>
-              <a
-                href="https://shakespeare.diy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Vibed with Shakespeare
-              </a>
+            <div className="space-y-2">
+              <div>
+                <span className="text-muted-foreground">Hosted on </span>
+                <a
+                  href="https://relayk.it"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:underline font-semibold"
+                >
+                  RelayKit
+                </a>
+              </div>
+              <div>
+                <span className="text-muted-foreground">Vibed with </span>
+                <a
+                  href="https://shakespeare.diy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:underline font-semibold"
+                >
+                  Shakespeare
+                </a>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground">Follow on Nostr for updates:</span>
+            <div>
+              <div className="text-muted-foreground mb-1">Follow on Nostr for updates:</div>
               <a
                 href="https://ditto.pub/follow/npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:underline font-medium"
+                className="text-foreground hover:underline font-semibold text-base"
               >
                 @sam
               </a>
