@@ -10,7 +10,7 @@ interface NostrEvent {
   sig: string;
 }
 
-const generateMockEvents = (): NostrEvent[] => {
+const generateMockEvents = (count: number): NostrEvent[] => {
   const events: NostrEvent[] = [];
   const kinds = [1, 3, 6, 7, 30023, 30078, 10002];
   const contents = [
@@ -23,7 +23,7 @@ const generateMockEvents = (): NostrEvent[] => {
     'Strfry is blazing fast',
   ];
   
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < count; i++) {
     events.push({
       id: Math.random().toString(36).substring(2, 15).repeat(4).substring(0, 64),
       pubkey: Math.random().toString(36).substring(2, 15).repeat(4).substring(0, 64),
@@ -42,14 +42,26 @@ const generateMockEvents = (): NostrEvent[] => {
 };
 
 export function NostrEventsBackground() {
-  const canvasRef = useRef<HTMLDivElement>(null);
-  const scrollY = useRef(0);
+  const column1Ref = useRef<HTMLDivElement>(null);
+  const column2Ref = useRef<HTMLDivElement>(null);
+  const column3Ref = useRef<HTMLDivElement>(null);
+  const column4Ref = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const handleScroll = () => {
-      scrollY.current = window.scrollY;
-      if (canvasRef.current) {
-        canvasRef.current.style.transform = `translateY(${scrollY.current * 0.3}px)`;
+      const scrollY = window.scrollY;
+      
+      if (column1Ref.current) {
+        column1Ref.current.style.transform = `translateY(${scrollY * 0.15}px)`;
+      }
+      if (column2Ref.current) {
+        column2Ref.current.style.transform = `translateY(${-scrollY * 0.25}px)`;
+      }
+      if (column3Ref.current) {
+        column3Ref.current.style.transform = `translateY(${scrollY * 0.35}px)`;
+      }
+      if (column4Ref.current) {
+        column4Ref.current.style.transform = `translateY(${-scrollY * 0.2}px)`;
       }
     };
     
@@ -57,20 +69,41 @@ export function NostrEventsBackground() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  const events = generateMockEvents();
+  const column1Events = generateMockEvents(8);
+  const column2Events = generateMockEvents(8);
+  const column3Events = generateMockEvents(8);
+  const column4Events = generateMockEvents(8);
   
   return (
-    <div className="fixed inset-0 overflow-hidden opacity-[0.15] pointer-events-none" style={{ zIndex: 0 }}>
-      <div ref={canvasRef} className="absolute inset-0 transition-transform will-change-transform">
-        <div className="grid grid-cols-3 gap-8 p-8">
-          {events.map((event, i) => (
-            <div 
-              key={i} 
-              className="text-[10px] whitespace-pre-wrap break-all font-mono"
-              style={{ 
-                animationDelay: `${i * 0.5}s`,
-              }}
-            >
+    <div className="fixed inset-0 overflow-hidden opacity-[0.06] pointer-events-none" style={{ zIndex: 0 }}>
+      <div className="absolute inset-0 flex gap-12 px-8">
+        <div ref={column1Ref} className="flex-1 space-y-8 will-change-transform" style={{ transform: 'translateY(-20%)' }}>
+          {column1Events.map((event, i) => (
+            <div key={i} className="text-[9px] whitespace-pre-wrap break-all font-mono">
+              {JSON.stringify(event, null, 2)}
+            </div>
+          ))}
+        </div>
+        
+        <div ref={column2Ref} className="flex-1 space-y-8 will-change-transform" style={{ transform: 'translateY(-50%)' }}>
+          {column2Events.map((event, i) => (
+            <div key={i} className="text-[9px] whitespace-pre-wrap break-all font-mono">
+              {JSON.stringify(event, null, 2)}
+            </div>
+          ))}
+        </div>
+        
+        <div ref={column3Ref} className="flex-1 space-y-8 will-change-transform" style={{ transform: 'translateY(-10%)' }}>
+          {column3Events.map((event, i) => (
+            <div key={i} className="text-[9px] whitespace-pre-wrap break-all font-mono">
+              {JSON.stringify(event, null, 2)}
+            </div>
+          ))}
+        </div>
+        
+        <div ref={column4Ref} className="flex-1 space-y-8 will-change-transform" style={{ transform: 'translateY(-40%)' }}>
+          {column4Events.map((event, i) => (
+            <div key={i} className="text-[9px] whitespace-pre-wrap break-all font-mono">
               {JSON.stringify(event, null, 2)}
             </div>
           ))}
