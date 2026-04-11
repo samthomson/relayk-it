@@ -60,7 +60,7 @@ export function NostrEventsBackground() {
   const events = generateMockEvents();
   
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden opacity-[0.03] pointer-events-none">
+    <div className="fixed inset-0 -z-10 overflow-hidden opacity-[0.08] pointer-events-none">
       <div ref={canvasRef} className="absolute inset-0 transition-transform will-change-transform">
         <div className="grid grid-cols-3 gap-8 p-8">
           {events.map((event, i) => (
