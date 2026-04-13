@@ -138,3 +138,46 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /** Soft lilac lift on marketing cards; uses --rk-card-base / --rk-card-glow from inline style. */
+  .rk-card-hover {
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .rk-card-hover:hover {
+    border-color: var(--rk-card-base, rgba(138, 115, 200, 0.95));
+    box-shadow: 0 22px 56px -18px var(--rk-card-glow, rgba(138, 115, 200, 0.55));
+  }
+
+  /** Centered accent bar under section titles. */
+  .rk-section-title::after {
+    content: '';
+    display: block;
+    margin: 0.75rem auto 0;
+    width: 3.5rem;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(128, 98, 188, 0.95) 12%,
+      rgba(108, 78, 168, 1) 50%,
+      rgba(138, 108, 195, 0.95) 88%,
+      transparent
+    );
+    border-radius: 1px;
+  }
+
+  /** Feature / card icon frame: hover glow from --rk-icon-glow. */
+  .rk-icon-tile {
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .rk-icon-tile:hover {
+    box-shadow: 0 0 36px -6px var(--rk-icon-glow, rgba(138, 115, 200, 0.6));
+  }
+}

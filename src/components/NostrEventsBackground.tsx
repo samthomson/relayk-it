@@ -75,7 +75,10 @@ export function NostrEventsBackground() {
   const column4Events = generateMockEvents(8);
   
   return (
-    <div className="fixed inset-0 overflow-hidden opacity-[0.12] pointer-events-none" style={{ zIndex: 0 }}>
+    <div
+      className="fixed inset-0 overflow-hidden opacity-[0.12] pointer-events-none text-[hsl(265,48%,38%)]"
+      style={{ zIndex: 0 }}
+    >
       <div className="absolute inset-0 flex gap-12 px-8">
         <div ref={column1Ref} className="flex-1 space-y-8 will-change-transform" style={{ transform: 'translateY(-20%)' }}>
           {column1Events.map((event, i) => (
