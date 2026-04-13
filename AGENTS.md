@@ -1,3 +1,11 @@
+# Agent conduct (read first)
+
+- Implement **exactly** what the user requests—**nothing more**. No creative refactors, drive-by cleanups, or “helpful” extras unless the user **explicitly** agrees.
+- **Git**: Do **not** create commits, push, or otherwise manipulate git history unless the user asks you to. The user owns version control.
+- **Replies**: Be **concise** in messages to the user.
+
+---
+
 # Project Overview
 
 This project is a Nostr client application built with React 19.x, TailwindCSS 3.x, Vite, shadcn/ui, and Nostrify.
@@ -1140,15 +1148,6 @@ There is an important distinction between **writing new tests** and **running ex
 - New features or components are created
 - Existing functionality needs verification
 
-### Running Tests (Executing the Test Suite)
-
-**ALWAYS run the test script** after making any code changes. This is mandatory regardless of whether you wrote new tests or not.
-
-- **You must run the test script** to validate your changes
-- **Your task is not complete** until the test script passes without errors
-- **This applies to all changes** - bug fixes, new features, refactoring, or any code modifications
-- **The test script includes** TypeScript compilation, ESLint checks, and existing test validation
-
 ### Test Setup
 
 The project uses Vitest with jsdom environment and includes comprehensive test setup:
@@ -1180,30 +1179,8 @@ describe('MyComponent', () => {
 
 ## Validating Your Changes
 
-**CRITICAL**: After making any code changes, you must validate your work by running available validation tools.
-
-**Your task is not considered finished until the code successfully type-checks and builds without errors.**
-
-### Validation Priority Order
-
-Run available tools in this priority order:
-
-1. **Type Checking** (Required): Ensure TypeScript compilation succeeds
-2. **Building/Compilation** (Required): Verify the project builds successfully
-3. **Linting** (Recommended): Check code style and catch potential issues
-4. **Tests** (If Available): Run existing test suite
-5. **Git Commit** (Required): Create a commit with your changes when finished
-
-**Minimum Requirements:**
-- Code must type-check without errors
-- Code must build/compile successfully
-- Fix any critical linting errors that would break functionality
-- Create a git commit when your changes are complete
-
-The validation ensures code quality and catches errors before deployment, regardless of the development environment.
+Use typecheck, lint, build, and tests when they are useful for the task or when the user requests them. Prefer fixing issues you introduce.
 
 ### Using Git
 
-If git is available in your environment (through a `shell` tool, or other git-specific tools), you should utilize `git log` to understand project history. Use `git status` and `git diff` to check the status of your changes, and if you make a mistake use `git checkout` to restore files.
-
-When your changes are complete and validated, create a git commit with a descriptive message summarizing your changes.
+You may use `git status` / `git diff` / `git log` to inspect the tree. **Do not** commit or push unless the user explicitly asks.
