@@ -74,7 +74,7 @@ const Index = () => {
       <NostrEventsBackground />
       
       {/* Hero Section */}
-      <section className="relative isolate px-6 pt-32 pb-24 sm:pt-40 sm:pb-32">
+      <section className="relative isolate px-6 pt-16 pb-20 sm:pt-28 sm:pb-28 md:pt-32 md:pb-32">
         <div className="text-center">
           <div className="flex justify-center mb-10">
             <RubixLoader 
