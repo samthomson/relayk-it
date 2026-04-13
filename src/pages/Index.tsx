@@ -1,8 +1,7 @@
 import { useSeoMeta } from '@unhead/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Server, Image, Globe, ArrowRight, Box, Zap, Layers, Terminal, Key, Users, Wrench } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Server, Image, Globe, ArrowRight, Box, Layers, Terminal, Key, Users, Wrench } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { NostrEventsBackground } from '@/components/NostrEventsBackground';
 import { RubixLoader, RubixLoaderColor } from '@samthomson/rubix-loader';
@@ -10,7 +9,7 @@ import { RubixLoader, RubixLoaderColor } from '@samthomson/rubix-loader';
 const Index = () => {
   const serviceColors = Object.values(RubixLoaderColor);
   const [displayedText, setDisplayedText] = useState('');
-  const [fontLoaded, setFontLoaded] = useState(false);
+  const [_, setFontLoaded] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const fullText = 'RELAYKIT';
   
