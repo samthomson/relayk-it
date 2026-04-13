@@ -5,9 +5,10 @@ import { Server, Image, Globe, ArrowRight, Box, Zap, Layers, Terminal, Key, User
 import { Badge } from '@/components/ui/badge';
 import { useState, useEffect } from 'react';
 import { NostrEventsBackground } from '@/components/NostrEventsBackground';
-import { RubixLoader } from '@samthomson/rubix-loader';
+import { RubixLoader, RubixLoaderColor } from '@samthomson/rubix-loader';
 
 const Index = () => {
+  const serviceColors = Object.values(RubixLoaderColor);
   const [displayedText, setDisplayedText] = useState('');
   const [fontLoaded, setFontLoaded] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
@@ -79,7 +80,7 @@ const Index = () => {
           <div className="flex justify-center mb-10">
             <RubixLoader 
               size={320}
-              colors={['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFFFFF']}
+              colors={serviceColors}
             />
           </div>
           <div className="mb-10 min-h-[8rem] sm:min-h-[10rem] lg:min-h-[12rem] flex justify-center items-center w-full px-4">
