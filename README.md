@@ -15,3 +15,9 @@ You are prompted for **`nsec`**, **hex**, or **`nbunksec`**; it is not written t
 
 - **Relays / Blossom / fallback**: `.nsite/config.json`
 - **Never** put private keys in `config.json` or commit them.
+
+## todo
+
+- [ ] update copy with 'are we decentralised yet' and 'relaykit increases nostr's decentralisation by making running relays easier'
+- [ ] add exmaple of nip5 name to ngateway
+- [ ] favicon
