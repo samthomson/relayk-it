@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="top" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#b8b0ff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#9b8fff;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#c8c4d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b0a8d8;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="left" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#7e6fff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#9b8fff;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#8e8c9a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a8a0c0;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="right" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#9b8fff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6f5cff;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#a8a0c8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7a72a8;stop-opacity:1" />
     </linearGradient>
   </defs>
   
