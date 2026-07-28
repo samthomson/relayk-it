@@ -50,6 +50,6 @@ echo "Deploying with nsyte@${NSYTE_VERSION} (NIP-5A root manifest)…" >&2
   --fallback=/index.html \
   --verbose \
   --skip-secrets-scan \
-  --force
+  --sync
 
 unset NSITE_SECRET
