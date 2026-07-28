@@ -1,7 +1,7 @@
 import { useSeoMeta } from '@unhead/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Server, Image, Globe, ArrowRight, Box, Layers, Terminal, Key, Users, Wrench } from 'lucide-react';
+import { Server, Image, Globe, ArrowRight, Box, Layers, Terminal, Key, Users, Wrench, GitBranch, Bell, CalendarClock } from 'lucide-react';
 import { useState, useEffect, type CSSProperties } from 'react';
 import { NostrEventsBackground } from '@/components/NostrEventsBackground';
 import { RubixLoader, RubixLoaderColor } from '@samthomson/rubix-loader';
@@ -83,7 +83,7 @@ const Index = () => {
 
   useSeoMeta({
     title: 'RelayKit — Self-host Nostr Services',
-    description: 'Deploy and manage relays, Blossom, and nsite gateways from one simple self-hosted control panel.',
+    description: 'Deploy and manage relays, Blossom, nsite gateways, git hosting, and notifications from one simple self-hosted control panel.',
   });
 
   return (
@@ -110,7 +110,7 @@ const Index = () => {
             )}
           </div>
           <p className="text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-            One install script. Deploy and manage Nostr relays, Blossom servers, and nsite gateways. Link your domains.
+            One install script. Deploy and manage Nostr relays, Blossom servers, nsite gateways, nostrified git hosting, and notifications. Link your domains.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button
@@ -262,15 +262,16 @@ const Index = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Relays</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  Nostr relays with configurable storage and policies
+                  Choose from three relay engines, each suited to a different job
                 </p>
                 <div className="space-y-2">
                   <code className="block text-[10px] break-all text-[rgb(72,48,118)] dark:text-[rgba(190,165,235,0.95)]">
                     wss://relay.yourdomain.com
                   </code>
                   <div className="text-xs text-muted-foreground space-y-1 pt-2">
-                    <div>• nostr-rs-relay</div>
-                    <div>• strfry</div>
+                    <div>• Strfry — high-performance C++ relay</div>
+                    <div>• nostr-rs-relay — Rust, whitelist &amp; kind filtering</div>
+                    <div>• Chapar Relay — chat-only events (NIP-59)</div>
                   </div>
                 </div>
               </CardContent>
@@ -302,16 +303,67 @@ const Index = () => {
                 >
                   <Globe className="h-5 w-5" style={{ color: brandAccent(4).base }} />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">nsite gateway</h3>
+                <h3 className="text-lg font-semibold text-foreground">nPanel</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  Serve static sites from Nostr events (NIP-5A)
+                  nsite gateway (NIP-5A) with built-in NIP-05 names on the same domain. Auto-republishes whenever you update your nsite, from anywhere.
                 </p>
                 <code className="block text-[10px] break-all text-[rgb(72,48,118)] dark:text-[rgba(190,165,235,0.95)]">
                   https://yourdomain.com
                 </code>
               </CardContent>
             </Card>
+
+            <Card className="rk-card-hover border border-border bg-card/80" style={rkCardStyle(5)}>
+              <CardContent className="pt-8 pb-6 px-6 space-y-4">
+                <div
+                  className="rk-icon-tile w-10 h-10 border flex items-center justify-center bg-background/50"
+                  style={rkIconTileStyle(5)}
+                >
+                  <GitBranch className="h-5 w-5" style={{ color: brandAccent(5).base }} />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">Grasp</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                  Self-hosted git-over-nostr backend. Git host with an embedded relay (GRASP), plus a built-in ngit repo explorer.
+                </p>
+                <code className="block text-[10px] break-all text-[rgb(72,48,118)] dark:text-[rgba(190,165,235,0.95)]">
+                  https://git.yourdomain.com
+                </code>
+              </CardContent>
+            </Card>
+
+            <Card className="rk-card-hover border border-border bg-card/80" style={rkCardStyle(6)}>
+              <CardContent className="pt-8 pb-6 px-6 space-y-4">
+                <div
+                  className="rk-icon-tile w-10 h-10 border flex items-center justify-center bg-background/50"
+                  style={rkIconTileStyle(6)}
+                >
+                  <Bell className="h-5 w-5" style={{ color: brandAccent(6).base }} />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">Pulse</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Nostr notifications. Personal push notifications for mentions, replies, zaps, and DMs — straight to your device.
+                </p>
+              </CardContent>
+            </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Hello World App Section */}
+      <section className="px-6 py-20 border-t border-border">
+        <div className="mx-auto max-w-3xl text-center">
+          <div
+            className="rk-icon-tile mx-auto w-12 h-12 border flex items-center justify-center bg-background/60 mb-6"
+            style={rkIconTileStyle(7)}
+          >
+            <CalendarClock className="h-6 w-6" style={{ color: brandAccent(7).base }} />
+          </div>
+          <h2 className="text-3xl font-bold mb-4 text-foreground">
+            <span className="inline-block rk-section-title">Comes with Hello World</span>
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            A standalone Nostr client, included with every RelayKit install. Write posts and schedule them for later, publishing straight to your own relays (or any).
+          </p>
         </div>
       </section>
 

@@ -52,7 +52,9 @@ export function AppProvider(props: AppProviderProps) {
     setConfig(updater);
   };
 
-  const config = { ...defaultConfig, ...rawConfig };
+  // Theme is always forced to defaultConfig's value, ignoring any persisted
+  // override — this site has no theme toggle and isn't styled for dark mode.
+  const config = { ...defaultConfig, ...rawConfig, theme: defaultConfig.theme };
 
   const appContextValue: AppContextType = {
     config,
