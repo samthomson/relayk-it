@@ -118,7 +118,7 @@ const Index = () => {
               className="bg-accent hover:bg-accent/90 text-accent-foreground text-base px-8 transition-shadow ring-1 ring-transparent hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)]"
               asChild
             >
-              <a href="https://github.com/samthomson/relaykit-proto" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/samthomson/relaykit" target="_blank" rel="noopener noreferrer">
                 View on GitHub
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -379,7 +379,7 @@ const Index = () => {
               className="bg-accent hover:bg-accent/90 text-accent-foreground text-base px-8 transition-shadow ring-1 ring-transparent hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)]"
               asChild
             >
-              <a href="https://github.com/samthomson/relaykit-proto" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/samthomson/relaykit" target="_blank" rel="noopener noreferrer">
                 View on GitHub
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
