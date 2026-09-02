@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+---
+
+<BaseLayout title="Page not found" description="This RelayKit page does not exist.">
+  <section class="relative isolate flex min-h-[60vh] flex-col items-center justify-center px-6 py-24 text-center">
+    <canvas
+      data-rubix-cube
+      data-size="180"
+      data-colors="#A78BFA"
+      class="mb-8 h-[180px] w-[180px]"
+      aria-label="Rotating Rubik's cube"
+      role="img"></canvas>
+    <h1 class="rk-wordmark font-display text-4xl font-bold uppercase tracking-[0.2em] text-foreground sm:text-5xl">404</h1>
+    <p class="mt-4 max-w-md text-muted-foreground">
+      This page doesn&rsquo;t exist — it may have been shuffled, rotated, or never deployed.
+    </p>
+    <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+      <a
+        href="/"
+        class="inline-flex items-center justify-center bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-shadow ring-1 ring-transparent hover:bg-accent/90 hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)]"
+      >
+        Back to home
+        <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+      </a>
+      <a
+        href="/introduction"
+        class="inline-flex items-center justify-center border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-[rgb(118,82,168)] hover:text-[rgb(118,82,168)]"
+      >
+        Read the docs
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script src="@/scripts/home.ts"></script>

@@ -1,11 +1,11 @@
 {
   "name": "RelayKit",
   "short_name": "RelayKit",
-  "description": "Self-host Nostr services",
+  "description": "Deploy and manage Nostr services on your own server",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#dc2626",
+  "theme_color": "#a78bfa",
   "icons": [
     {
       "src": "/icon-512.png",

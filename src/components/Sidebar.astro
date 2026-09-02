@@ -1,0 +1,38 @@
+---
+import type { NavSection } from '@/lib/nav';
+
+interface Props {
+  sections: NavSection[];
+  currentPath: string;
+}
+
+const { sections, currentPath } = Astro.props;
+
+const normalize = (href: string) => (href.endsWith('/') && href !== '/' ? href.slice(0, -1) : href);
+const current = normalize(currentPath);
+---
+
+<nav aria-label="Documentation" class="space-y-7 text-sm">
+  {
+    sections.map((section) => (
+      <div>
+        <div class="mb-2 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/70">
+          {section.label}
+        </div>
+        <ul>
+          {section.items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="rk-sidebar-link"
+                aria-current={normalize(item.href) === current ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</nav>

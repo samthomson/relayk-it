@@ -1,0 +1,366 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NostrEventsBackground from '@/components/NostrEventsBackground.astro';
+import Icon from '@/components/Icon.astro';
+import { brandAccent } from '@/lib/brandAccents';
+type StyleRecord = Record<string, string>;
+
+const GITHUB_URL = 'https://github.com/samthomson/relaykit';
+
+/** Preset cycle from RubixLoaderColor — the five service brand hues. */
+const CUBE_COLORS = '#A78BFA,#FBBF24,#F87171,#E879F9,#52525B';
+
+const rkStyle = (index: number): StyleRecord => ({
+  '--rk-card-base': brandAccent(index).base,
+  '--rk-card-glow': brandAccent(index).glow,
+});
+
+const rkTileStyle = (index: number): StyleRecord => ({
+  borderColor: brandAccent(index).base,
+  '--rk-icon-glow': brandAccent(index).glow,
+});
+
+const features = [
+  {
+    icon: 'terminal',
+    title: 'One install script',
+    body: 'Run on any VPS with a single command',
+  },
+  {
+    icon: 'box',
+    title: 'Run many services',
+    body: 'Deploy as many nostr services (relays, Blossoms, nsites) as needed',
+  },
+  {
+    icon: 'layers',
+    title: 'Group into projects / envs',
+    body: 'Organize services by project or environment',
+  },
+  {
+    icon: 'globe',
+    title: 'Link your domains',
+    body: 'Connect custom domains to your services',
+  },
+  {
+    icon: 'key',
+    title: 'NIP-07 auth',
+    body: 'Sign in with your existing Nostr identity',
+  },
+] as const;
+
+const audiences = [
+  {
+    icon: 'users',
+    title: 'Self-hosters',
+    body: 'Run your own relay, Blossom server, or nsite gateway without complex configuration.',
+  },
+  {
+    icon: 'wrench',
+    title: 'Developers',
+    body: 'Spin up disposable test infrastructure for dev environments in seconds. Finally a nostr testnet.',
+  },
+] as const;
+
+const services = [
+  {
+    icon: 'server',
+    accent: 2,
+    title: 'Relays',
+    body: 'Choose from three relay engines, each suited to a different job',
+    href: '/services/strfry',
+    linkLabel: 'strfry · nostr-rs-relay · chapar',
+    code: 'wss://relay.yourdomain.com',
+  },
+  {
+    icon: 'image',
+    accent: 3,
+    title: 'Blossom',
+    body: 'Media server for images, videos, and files',
+    href: '/services/blossom',
+    linkLabel: 'blossom server',
+    code: 'https://blossom.yourdomain.com',
+  },
+  {
+    icon: 'globe',
+    accent: 4,
+    title: 'nPanel',
+    body: 'nsite gateway (NIP-5A) with built-in NIP-05 names on the same domain. Auto-republishes whenever you update your nsite, from anywhere.',
+    href: '/services/npanel',
+    linkLabel: 'nsite gateway',
+    code: 'https://yourdomain.com',
+  },
+  {
+    icon: 'git-branch',
+    accent: 5,
+    title: 'grasp',
+    body: 'Self-hosted git-over-nostr backend. Git host with an embedded relay (GRASP), plus a built-in ngit repo explorer.',
+    href: '/services/grasp',
+    linkLabel: 'git over nostr',
+    code: 'https://git.yourdomain.com',
+  },
+  {
+    icon: 'bell',
+    accent: 6,
+    title: 'pulse',
+    body: 'Nostr notifications. Personal push notifications for mentions, replies, zaps, and DMs — straight to your device.',
+    href: '/services/pulse',
+    linkLabel: 'push notifications',
+  },
+] as const;
+
+const steps = [
+  {
+    title: 'Run install script on VPS',
+    body: 'One command installs RelayKit on any server',
+    bg: 'rgba(118,82,168,0.35)',
+    border: 'rgba(90,60,140,0.85)',
+    shadow: 'rgba(72,48,118,0.45)',
+  },
+  {
+    title: 'Auth with NIP-07 browser extension',
+    body: 'Sign in using your Nostr identity',
+    bg: 'rgba(128,92,178,0.38)',
+    border: 'rgba(98,68,155,0.88)',
+    shadow: 'rgba(82,58,128,0.45)',
+  },
+  {
+    title: 'Deploy and manage services',
+    body: 'Monitor logs, update configs, manage domains',
+    bg: 'rgba(138,108,188,0.38)',
+    border: 'rgba(108,78,158,0.88)',
+    shadow: 'rgba(92,68,138,0.45)',
+  },
+] as const;
+---
+
+<BaseLayout
+  title="RelayKit — Run your own Nostr stack"
+  description="One install script. Deploy and manage Nostr relays, Blossom servers, nsite gateways, nostrified git hosting, and notifications. Link your domains."
+  bareTitle={true}
+>
+  <NostrEventsBackground />
+
+  <!-- Hero -->
+  <section class="relative isolate px-6 pt-16 pb-20 sm:pt-28 sm:pb-28 md:pt-32 md:pb-32">
+    <div class="relative z-10 text-center">
+      <div class="mb-10 flex justify-center">
+        <canvas
+          data-rubix-cube
+          data-size="320"
+          data-colors={CUBE_COLORS}
+          class="h-[320px] w-[320px] max-w-full"
+          aria-label="Rotating Rubik's cube — the RelayKit emblem"
+          role="img"></canvas>
+      </div>
+      <div class="mb-10 flex min-h-[8rem] w-full items-center justify-center px-4 sm:min-h-[10rem] lg:min-h-[12rem]">
+        <div
+          class="rk-wordmark title-cursor-container font-display text-5xl font-bold uppercase leading-none tracking-[0.2em] text-foreground sm:text-7xl md:text-8xl lg:text-9xl"
+          data-typewriter-container
+          data-hidden
+        >
+          <span data-typewriter data-text="RELAYKIT"></span>
+          <span class="cursor-bar animate-blink bg-[rgb(118,82,168)] shadow-[0_0_14px_rgba(90,60,140,0.65)] sm:w-3"></span>
+        </div>
+      </div>
+      <p class="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-muted-foreground">
+        One install script. Deploy and manage Nostr relays, Blossom servers, nsite gateways, nostrified git hosting, and
+        notifications. Link your domains.
+      </p>
+      <div class="mb-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href="/install"
+          class="inline-flex items-center justify-center bg-accent px-8 text-base text-accent-foreground transition-shadow ring-1 ring-transparent hover:bg-accent/90 hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)] py-3 font-semibold"
+        >
+          Get started
+          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        </a>
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center border border-border px-8 py-3 text-base font-semibold text-foreground transition-colors hover:border-[rgb(118,82,168)] hover:text-[rgb(118,82,168)]"
+        >
+          View on GitHub
+          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        </a>
+      </div>
+      <div class="flex justify-center">
+        <div
+          class="border-2 border-[rgb(118,82,168)] px-6 py-3 text-sm font-bold uppercase tracking-wider shadow-[0_0_28px_-6px_rgba(90,60,140,0.45)]"
+        >
+          Currently in Beta — Contributions Welcome
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What it does -->
+  <section class="border-t border-border px-6 py-20">
+    <div class="container mx-auto">
+      <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">What it does</span>
+      </h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          features.map((f, i) => (
+            <div class="space-y-4 text-center">
+              <div
+                class="rk-icon-tile mx-auto flex h-12 w-12 items-center justify-center border bg-background/60"
+                style={rkTileStyle(i)}
+              >
+                <Icon name={f.icon} class="h-6 w-6" style={`color: ${brandAccent(i).base}`} />
+              </div>
+              <h3 class="font-semibold text-foreground">{f.title}</h3>
+              <p class="text-sm text-muted-foreground">{f.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">Who it&rsquo;s for</span>
+      </h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        {
+          audiences.map((a, i) => (
+            <div class="rk-card-hover border border-border bg-card/80 px-6 pb-6 pt-8" style={rkStyle(i)}>
+              <div
+                class="rk-icon-tile flex h-10 w-10 items-center justify-center border bg-background/50"
+                style={rkTileStyle(i)}
+              >
+                <Icon name={a.icon} class="h-5 w-5" style={`color: ${brandAccent(i).base}`} />
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-foreground">{a.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- What you can deploy -->
+  <section class="border-t border-border px-6 py-20">
+    <div class="container mx-auto">
+      <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">What you can deploy</span>
+      </h2>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((s) => (
+            <a href={s.href} class="rk-card-hover block border border-border bg-card/80 px-6 pb-6 pt-8" style={rkStyle(s.accent)}>
+              <div
+                class="rk-icon-tile flex h-10 w-10 items-center justify-center border bg-background/50"
+                style={rkTileStyle(s.accent)}
+              >
+                <Icon name={s.icon} class="h-5 w-5" style={`color: ${brandAccent(s.accent).base}`} />
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-foreground">{s.title}</h3>
+              <p class="mt-2 mb-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+              {'code' in s && s.code && (
+                <code class="block break-all text-[10px] text-[rgb(72,48,118)] dark:text-[rgba(190,165,235,0.95)]">
+                  {s.code}
+                </code>
+              )}
+              <div class="mt-3 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground group-hover:text-[rgb(118,82,168)]">
+                {s.linkLabel}
+                <Icon name="arrow-right" class="h-3 w-3" />
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="mt-10 text-center">
+        <a
+          href="/services"
+          class="rk-link inline-flex items-center gap-2 border-b-2 border-[rgba(118,82,168,0.4)] pb-1 text-sm"
+        >
+          Compare all services
+          <Icon name="arrow-right" class="h-3.5 w-3.5" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hello World -->
+  <section class="border-t border-border px-6 py-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <div
+        class="rk-icon-tile mx-auto mb-6 flex h-12 w-12 items-center justify-center border bg-background/60"
+        style={rkTileStyle(7)}
+      >
+        <Icon name="calendar-clock" class="h-6 w-6" style={`color: ${brandAccent(7).base}`} />
+      </div>
+      <h2 class="mb-4 text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">Comes with Hello World</span>
+      </h2>
+      <p class="text-lg leading-relaxed text-muted-foreground">
+        A standalone Nostr client, included with every RelayKit install. Write posts and schedule them for later,
+        publishing straight to your own relays (or any).
+      </p>
+      <a href="/apps/hello-world" class="rk-link mt-6 inline-flex items-center gap-2 border-b-2 border-[rgba(118,82,168,0.4)] pb-1 text-sm">
+        More about Hello World
+        <Icon name="arrow-right" class="h-3.5 w-3.5" />
+      </a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="overflow-hidden px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">How it works</span>
+      </h2>
+      <div class="space-y-12">
+        {
+          steps.map((step, i) => (
+            <div class="flex items-start gap-6">
+              <div
+                class="flex h-10 w-10 flex-shrink-0 items-center justify-center border text-sm font-bold text-foreground"
+                style={`background: ${step.bg}; border-color: ${step.border}; box-shadow: 0 0 22px -4px ${step.shadow};`}
+              >
+                {i + 1}
+              </div>
+              <div class="pt-1">
+                <h3 class="mb-2 text-lg font-semibold text-foreground">{step.title}</h3>
+                <p class="text-muted-foreground">{step.body}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="relative isolate border-t border-border px-6 py-24 sm:py-32">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="mb-8 text-4xl font-bold text-foreground">Run your own Nostr stack.</h2>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href="/install"
+          class="inline-flex items-center justify-center bg-accent px-8 py-3 text-base font-semibold text-accent-foreground transition-shadow ring-1 ring-transparent hover:bg-accent/90 hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)]"
+        >
+          Get started
+          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        </a>
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center border border-border px-8 py-3 text-base font-semibold text-foreground transition-colors hover:border-[rgb(118,82,168)] hover:text-[rgb(118,82,168)]"
+        >
+          View on GitHub
+          <Icon name="arrow-right" class="ml-2 h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<script src="@/scripts/home.ts"></script>
+

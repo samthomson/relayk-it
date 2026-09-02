@@ -1,39 +1,37 @@
 # relayk.it
 
-Marketing landing page for **[RelayKit](https://github.com/samthomson/relaykit)** — self-host Nostr services (relays, Blossom, nsite gateways) from one control panel.
+The RelayKit marketing + documentation site — a static Astro site deployed to Nostr as an nsite (NIP-5A).
 
-Live at **[relayk.it](https://relayk.it)**.
+## Stack
 
-## Development
+- **[Astro 5](https://astro.build)** — static HTML output, near-zero client JS. The Rubik's cube, typewriter title and site chrome are small vanilla TS scripts; no UI framework ships anywhere.
+- **TailwindCSS 3** — design tokens (lilac accents, sharp corners, light/dark) live in `src/styles/global.css`.
+- **Ethnocentric** display font + **JetBrains Mono** body font.
+- Content pages are Markdown in `src/content/`, organised into collections (`pages`, `features`, `services`, `apps`, `guides`) that drive the docs sidebar automatically (`src/lib/nav.ts`).
+
+## Developing
 
 ```bash
-npm install
-npm run dev
+npm run dev      # astro dev server
+npm run test     # astro check + build
+npm run build    # astro build → dist/
 ```
 
-## Deploy
+## Content authoring
 
-Publishing uses **[nsyte](https://github.com/sandwichfarm/nsyte)** (NIP-5A **kind 15128** root manifest + Blossom blobs).
+- Add a page: drop a `.md` file into the matching `src/content/<collection>/` directory with `title`, `description`, `order` frontmatter. It appears in the sidebar.
+- Screenshots/videos: put files in `public/media/`, reference from a service page's `media` frontmatter (rendered automatically) or inline in Markdown.
+- The changelog (`src/content/pages/changelog.md`) is maintained by hand — copy user-facing notes from `../relaykit/app/CHANGELOG.md` when cutting a release.
+
+## Deploying (nsite)
 
 ```bash
-npm install
 npm run nsite:publish
 ```
 
-**First run** downloads the pinned **nsyte** binary from **GitHub Releases** into **`.tools/`** (gitignored). No Deno and no JSR (JSR often returns **403** to Deno’s fetch on some networks).
+Builds `dist/` and uploads it with nsyte (NIP-5A). Unknown paths serve the generated `404.html`. Relays/servers are configured in `.nsite/config.json`; the publish script downloads a pinned nsyte binary into `.tools/`.
 
-You are prompted for **`nsec`**, **hex**, or **`nbunksec`**; it is not written to disk by this script.
+## Analytics
 
-- **Relays / Blossom / fallback**: `.nsite/config.json`
-- **Never** put private keys in `config.json` or commit them.
+Plausible Analytics is wired in via build-time env vars (see `.env.example`): set `PLAUSIBLE_DOMAIN` and rebuild. The CSP allows the script origin automatically. Leave it empty to build without tracking.
 
-## Links
-
-- **RelayKit** (main project): [github.com/samthomson/relaykit](https://github.com/samthomson/relaykit)
-- **Site**: [relayk.it](https://relayk.it)
-
-## Todo
-
-- [ ] update copy with 'are we decentralised yet' and 'relaykit increases nostr's decentralisation by making running relays easier'
-- [ ] add exmaple of nip5 name to ngateway
-- [ ] favicon

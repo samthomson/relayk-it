@@ -1,0 +1,100 @@
+---
+const YEAR = new Date().getFullYear();
+const GITHUB_URL = 'https://github.com/samthomson/relaykit';
+const GRASP_URL = 'https://grasp.samt.st';
+
+interface FooterLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+const columns: { label: string; links: FooterLink[] }[] = [
+  {
+    label: 'Docs',
+    links: [
+      { label: 'Introduction', href: '/introduction' },
+      { label: 'Install', href: '/install' },
+      { label: 'Guides', href: '/docs/local-https' },
+      { label: 'Changelog', href: '/changelog' },
+    ],
+  },
+  {
+    label: 'Services',
+    links: [
+      { label: 'All services', href: '/services' },
+      { label: 'Relays', href: '/services/strfry' },
+      { label: 'Blossom', href: '/services/blossom' },
+      { label: 'nPanel', href: '/services/npanel' },
+      { label: 'grasp', href: '/services/grasp' },
+      { label: 'pulse', href: '/services/pulse' },
+    ],
+  },
+  {
+    label: 'Project',
+    links: [
+      { label: 'GitHub', href: GITHUB_URL, external: true },
+      { label: 'Clone over nostr (grasp)', href: GRASP_URL, external: true },
+      { label: 'Report an issue', href: `${GITHUB_URL}/issues/new`, external: true },
+      { label: 'Suggest a feature', href: `${GITHUB_URL}/issues/new`, external: true },
+      { label: 'Hosted on RelayKit', href: 'https://relayk.it', external: true },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-border px-6 py-14">
+  <div class="mx-auto max-w-6xl">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="space-y-4">
+        <a href="/" class="flex items-center gap-2.5" aria-label="RelayKit home">
+          <img src="/favicon.svg" alt="" class="h-6 w-6 translate-y-[1px]" width="24" height="24" />
+          <span class="rk-wordmark font-display text-sm uppercase tracking-[0.22em]">RelayKit</span>
+        </a>
+        <p class="max-w-xs text-sm leading-relaxed text-muted-foreground">
+          Deploy and manage Nostr relays, Blossom servers, nsite gateways and more — from one dashboard on your own server.
+        </p>
+      </div>
+
+      {
+        columns.map((col) => (
+          <nav aria-label={col.label}>
+            <div class="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/70">
+              {col.label}
+            </div>
+            <ul class="space-y-2 text-sm">
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                    class="text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        Follow on Nostr for updates:
+        <a
+          href="https://ditto.pub/follow/npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rk-link ml-1 text-foreground"
+          >@sam</a
+        >
+      </div>
+      <div>© {YEAR} RelayKit</div>
+    </div>
+  </div>
+</footer>

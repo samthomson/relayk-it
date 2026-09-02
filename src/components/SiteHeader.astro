@@ -1,0 +1,79 @@
+---
+import Icon from '@/components/Icon.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+const GITHUB_URL = 'https://github.com/samthomson/relaykit';
+
+const links = [
+  { label: 'Docs', href: '/introduction' },
+  { label: 'Services', href: '/services' },
+  { label: 'Install', href: '/install' },
+  { label: 'Changelog', href: '/changelog' },
+];
+
+const normalize = (href: string) => (href.endsWith('/') && href !== '/' ? href.slice(0, -1) : href);
+const current = normalize(currentPath);
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70"
+>
+  <div class="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
+    <button
+      type="button"
+      class="inline-flex h-9 w-9 items-center justify-center text-foreground hover:text-[rgb(118,82,168)] lg:hidden"
+      data-drawer-open
+      aria-expanded="false"
+      aria-controls="site-drawer"
+      aria-label="Open navigation menu"
+    >
+      <Icon name="menu" class="h-5 w-5" />
+    </button>
+
+      <img src="/favicon.svg" alt="" class="h-6 w-6 translate-y-[1px]" width="24" height="24" />
+      <span class="rk-wordmark font-display text-sm tracking-[0.22em] uppercase">RelayKit</span>
+    </a>
+
+    <nav class="ml-6 hidden items-center gap-6 text-sm md:flex" aria-label="Main">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'font-semibold underline-offset-4 transition-colors hover:text-[rgb(118,82,168)] hover:underline hover:decoration-[rgb(118,82,168)]',
+              normalize(link.href) === current ? 'text-foreground' : 'text-muted-foreground',
+            ]}
+            aria-current={normalize(link.href) === current ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto flex items-center gap-1 sm:gap-2">
+      <button
+        type="button"
+        class="inline-flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+        data-theme-toggle
+        aria-label="Toggle light/dark theme"
+      >
+        <Icon name="sun" class="h-[1.05rem] w-[1.05rem] dark:hidden" />
+        <Icon name="moon" class="hidden h-[1.05rem] w-[1.05rem] dark:block" />
+      </button>
+      <a
+        href={GITHUB_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex h-9 items-center gap-2 border border-border px-3 text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:border-[rgb(118,82,168)] hover:text-[rgb(118,82,168)]"
+      >
+        <Icon name="github" class="h-4 w-4" />
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </div>
+  </div>
+</header>

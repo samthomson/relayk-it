@@ -1,0 +1,113 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Sidebar from '@/components/Sidebar.astro';
+import Icon from '@/components/Icon.astro';
+import { getNav, flattenNav, pagerFor } from '@/lib/nav';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  section?: string;
+  headings?: Heading[];
+}
+
+const { title, description, section, headings = [] } = Astro.props;
+const path = Astro.url.pathname;
+const sections = await getNav();
+const pager = pagerFor(flattenNav(sections), path);
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="mx-auto max-w-7xl px-0 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[16rem_minmax(0,1fr)_15rem]">
+    <!-- Site sidebar (desktop) — one page scroll, no nested scrollbar -->
+    <aside class="hidden border-r border-border py-10 lg:block">
+      <Sidebar sections={sections} currentPath={path} />
+    </aside>
+
+    <article class="min-w-0 px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
+      {
+        section && (
+          <div class="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-[rgb(118,82,168)]">
+            {section}
+          </div>
+        )
+      }
+      <h1 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{title}</h1>
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{description}</p>
+      <div class="rk-section-title-left mt-6"></div>
+
+      <div class="rk-prose mt-8 pb-4">
+        <slot />
+      </div>
+
+      <nav class="mt-12 grid gap-4 border-t border-border pt-8 sm:grid-cols-2" aria-label="Pagination">
+        {
+          pager.prev ? (
+            <a
+              href={pager.prev.href}
+              class="group -ml-3 flex flex-col border border-border bg-card/60 px-5 py-4 transition-colors hover:border-[rgb(118,82,168)]"
+            >
+              <span class="mb-1 inline-flex items-center gap-1 rotate-180 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground group-hover:text-[rgb(118,82,168)]">
+                <Icon name="chevron-right" class="h-3 w-3" />
+                Previous
+              </span>
+              <span class="text-sm font-semibold text-foreground">{pager.prev.label}</span>
+            </a>
+          ) : (
+            <span aria-hidden="true"></span>
+          )
+        }
+        {
+          pager.next ? (
+            <a
+              href={pager.next.href}
+              class="group -mr-3 flex flex-col items-end border border-border bg-card/60 px-5 py-4 text-right transition-colors hover:border-[rgb(118,82,168)]"
+            >
+              <span class="mb-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground group-hover:text-[rgb(118,82,168)]">
+                Next
+                <Icon name="chevron-right" class="h-3 w-3" />
+              </span>
+              <span class="text-sm font-semibold text-foreground">{pager.next.label}</span>
+            </a>
+          ) : (
+            <span aria-hidden="true"></span>
+          )
+        }
+      </nav>
+    </article>
+
+    <!-- On-this-page rail (wide screens) -->
+    {
+      toc.length > 0 && (
+        <aside class="sticky top-14 hidden max-h-[calc(100vh-3.5rem)] overflow-y-auto py-14 pl-6 xl:block">
+          <div data-toc>
+            <div class="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground/70">
+              On this page
+            </div>
+            <ul>
+              {toc.map((h) => (
+                <li class={h.depth === 3 ? 'ml-3' : ''}>
+                  <a href={`#${h.slug}`} class="rk-toc-link">
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6 border-t border-border pt-4">
+              <a href={Astro.url.pathname} class="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground">
+                ↑ Back to top
+              </a>
+            </div>
+          </div>
+        </aside>
+      )
+    }
+  </div>
+</BaseLayout>

@@ -12,7 +12,7 @@
     "https://cdn.satellite.earth",
     "https://nostr.download"
   ],
-  "fallback": "/index.html",
+  "fallback": "/404.html",
   "publishServerList": false,
   "publishRelayList": false,
   "publishProfile": false

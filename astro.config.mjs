@@ -1,0 +1,21 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://relayk.it',
+  trailingSlash: 'never',
+  integrations: [mdx(), sitemap()],
+  build: {
+    inlineStylesheets: 'never',
+  },
+  // Keep every asset — scripts included — as real files: the CSP allows only
+  // `script-src 'self'`, so Astro's small-chunk inlining must stay off.
+  vite: {
+    build: {
+      assetsInlineLimit: 0,
+    },
+  },
+});

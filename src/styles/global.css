@@ -1,0 +1,346 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Ethnocentric';
+  src: url('../assets/fonts/ethnocentric.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Design tokens, brand utilities and the Nostr events background ported
+ * verbatim from the previous site. Sharp corners (--radius: 0), lilac
+ * accents and the Ethnocentric display face are the RelayKit identity.
+ */
+
+[data-typewriter-container][data-hidden] {
+  visibility: hidden;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s steps(1, end) infinite;
+}
+
+.title-cursor-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.cursor-bar {
+  display: inline-block;
+  width: 0.5rem;
+  height: 1.4cap;
+  transform: translateY(-0.08em);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 98%;
+
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 5%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 10%;
+
+    --radius: 0;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(118, 82, 168, 0.9);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /** Soft lilac lift on marketing cards; uses --rk-card-base / --rk-card-glow from inline style. */
+  .rk-card-hover {
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .rk-card-hover:hover {
+    border-color: var(--rk-card-base, rgba(138, 115, 200, 0.95));
+    box-shadow: 0 22px 56px -18px var(--rk-card-glow, rgba(138, 115, 200, 0.55));
+  }
+
+  /** Centered accent bar under section titles. */
+  .rk-section-title::after {
+    content: '';
+    display: block;
+    margin: 0.75rem auto 0;
+    width: 3.5rem;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(128, 98, 188, 0.95) 12%,
+      rgba(108, 78, 168, 1) 50%,
+      rgba(138, 108, 195, 0.95) 88%,
+      transparent
+    );
+    border-radius: 1px;
+  }
+
+  /** Left-aligned variant for docs/article headings. */
+  .rk-section-title-left::after {
+    content: '';
+    display: block;
+    margin: 0.75rem 0 0;
+    width: 3.5rem;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      rgba(128, 98, 188, 1),
+      rgba(138, 108, 195, 0.95) 60%,
+      transparent
+    );
+    border-radius: 1px;
+  }
+
+  /** Feature / card icon frame: hover glow from --rk-icon-glow. */
+  .rk-icon-tile {
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .rk-icon-tile:hover {
+    box-shadow: 0 0 36px -6px var(--rk-icon-glow, rgba(138, 115, 200, 0.6));
+  }
+
+  /** Brand link treatment used across the site. */
+  .rk-link {
+    @apply font-semibold underline-offset-4 decoration-[rgba(118,82,168,0.65)] hover:underline hover:text-[rgb(62,38,108)] hover:decoration-[rgb(118,82,168)] dark:hover:text-[rgba(190,165,235,0.98)];
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Nostr events background (ported from the React original).
+ * Four columns of drifting mock events behind the hero.
+ * --------------------------------------------------------------- */
+
+@keyframes rk-event-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.rk-events-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rk-events-col {
+  flex: 1 1 0;
+  will-change: transform;
+  animation: rk-event-drift linear infinite;
+}
+
+.rk-events-col pre {
+  @apply font-mono text-[9px] leading-relaxed whitespace-pre-wrap break-all;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rk-events-col {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Docs chrome
+ * --------------------------------------------------------------- */
+
+.rk-sidebar-link {
+  @apply block border-l-2 border-transparent py-1.5 pl-4 pr-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:border-[rgba(118,82,168,0.6)] dark:hover:text-foreground;
+}
+
+.rk-sidebar-link[aria-current='page'] {
+  @apply border-[rgb(118,82,168)] text-foreground font-semibold;
+}
+
+.rk-toc-link {
+  @apply block border-l-2 border-transparent py-1 pl-3 text-xs text-muted-foreground transition-colors hover:text-foreground dark:hover:text-foreground;
+}
+
+.rk-toc-link[data-active='true'] {
+  @apply border-[rgb(118,82,168)] text-foreground font-semibold;
+}
+
+/* Mobile drawer */
+.rk-drawer {
+  transform: translateX(-100%);
+  transition: transform 0.25s ease-in-out;
+}
+
+.rk-drawer[data-open='true'] {
+  transform: translateX(0);
+}
+
+.rk-drawer-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.rk-drawer-backdrop[data-open='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rk-drawer,
+  .rk-drawer-backdrop {
+    transition: none;
+  }
+}
+
+/* Black wordmark with a violet backglow — bridges the site's black-on-white
+ * with the app's purple brand. Cypherpunk register mark. */
+.rk-wordmark {
+  text-shadow:
+    0 0 7px rgba(196, 181, 253, 0.95),
+    0 0 20px rgba(167, 139, 250, 0.7),
+    0 0 48px rgba(124, 58, 237, 0.5),
+    0 0 90px rgba(109, 40, 217, 0.35);
+}
+
+.dark .rk-wordmark {
+  text-shadow:
+    0 0 8px rgba(221, 214, 254, 0.98),
+    0 0 26px rgba(196, 181, 253, 0.85),
+    0 0 64px rgba(167, 139, 250, 0.6),
+    0 0 120px rgba(139, 92, 246, 0.45);
+}
+
+/* Docs prose refinements on top of the typography plugin */
+.rk-prose {
+  @apply prose prose-sm sm:prose-base max-w-none dark:prose-invert;
+}
+
+.rk-prose pre {
+  @apply border border-border bg-[rgb(24,24,30)] text-[rgb(226,226,236)] dark:bg-black/60;
+}
+
+.rk-prose :not(pre) > code {
+  @apply rounded-none border border-[rgba(118,82,168,0.25)] bg-[rgba(118,82,168,0.07)] px-1.5 py-0.5 font-normal text-[rgb(72,48,118)] dark:border-[rgba(167,139,250,0.25)] dark:bg-[rgba(167,139,250,0.1)] dark:text-[rgba(196,181,253,0.95)];
+}
+
+/* Dark-mode prose accents: lilac links + readable quote text over the dark
+ * background (base invert handles body/headings). */
+.dark .rk-prose {
+  --tw-prose-links: rgb(196 181 253);
+  --tw-prose-code: rgb(196 181 253);
+  --tw-prose-quotes: hsl(215 20% 88%);
+  --tw-prose-quote-borders: rgba(167 139 250, 0.55);
+  --tw-prose-hr: hsl(217.2 32.6% 17.5%);
+}
+.rk-prose pre code {
+  @apply bg-transparent border-0 p-0 text-inherit;
+}
+
+.rk-prose a {
+  @apply decoration-[rgba(118,82,168,0.65)] underline-offset-4 hover:underline;
+}
+
+.rk-prose h2 {
+  @apply mt-10 mb-3 text-xl font-bold tracking-tight;
+}
+
+.rk-prose h3 {
+  @apply mt-8 mb-2 text-base font-bold tracking-tight;
+}
+
+.rk-prose table {
+  @apply text-sm;
+}
+
+.rk-prose :where(video) {
+  @apply w-full border border-border;
+}
+
+.rk-prose :where(img) {
+  @apply w-full border border-border;
+}

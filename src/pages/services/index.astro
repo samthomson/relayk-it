@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import DocsLayout from '@/layouts/DocsLayout.astro';
+import { getNav } from '@/lib/nav';
+import Icon from '@/components/Icon.astro';
+import { brandAccent } from '@/lib/brandAccents';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const nav = await getNav();
+const serviceNav = nav.find((s) => s.label === 'Services')?.items ?? [];
+const next = serviceNav.find((item) => item.href !== '/services');
+---
+
+<DocsLayout
+  title="Services"
+  description="Everything you can deploy with RelayKit — relays, media, gateways and tools, each one page with setup notes and configuration reference."
+  section="Services"
+>
+  <p>
+    RelayKit deploys services from curated presets — Docker Compose templates with sane defaults, exposed
+    configuration, and domain routing baked in. Pick a service below to see what it does and how to run it.
+  </p>
+
+  <div class="not-prose my-8 overflow-x-auto border border-border">
+    <table class="w-full min-w-[640px] text-left text-sm">
+      <thead>
+        <tr class="border-b border-border bg-card/80 text-left text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          <th class="px-4 py-3 font-bold">Service</th>
+          <th class="px-4 py-3 font-bold">Type</th>
+          <th class="px-4 py-3 font-bold">What it gives you</th>
+          <th class="px-4 py-3 font-bold">NIPs</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          services.map((s, i) => (
+            <tr class="group border-b border-border transition-colors last:border-b-0 hover:bg-card/60">
+              <td class="px-4 py-3 align-top">
+                <a
+                  href={`/services/${s.id}`}
+                  class="flex items-center gap-2 font-semibold text-foreground underline-offset-4 group-hover:text-[rgb(118,82,168)] group-hover:underline"
+                >
+                  <span class="inline-block h-2 w-2 flex-shrink-0" style={`background: ${brandAccent(i + 2).base}`} />
+                  {s.data.title}
+                </a>
+              </td>
+              <td class="px-4 py-3 align-top text-muted-foreground">{s.data.type}</td>
+              <td class="px-4 py-3 align-top text-muted-foreground">{s.data.tagline}</td>
+              <td class="px-4 py-3 align-top text-xs text-muted-foreground">{s.data.nips.join(', ') || '—'}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Which relay should I run?</h2>
+  <p>
+    The three relay engines cover different jobs: <a href="/services/strfry">strfry</a> for raw performance and
+    general-purpose use, <a href="/services/nostr-rs-relay">nostr-rs-relay</a> when you want policy control
+    (pubkey whitelists, kind filtering, NIP-42 auth), and <a href="/services/chapar">chapar</a> for private chat
+    relays that only accept NIP-59 gift-wrapped events. You can run several side by side — that is the point.
+  </p>
+
+  {
+    next && (
+      <p class="mt-8 text-sm text-muted-foreground">
+        New services land regularly — <a href="/changelog">see the changelog</a> for what shipped lately.
+      </p>
+    )
+  }
+
+  <div class="not-prose mt-8">
+    <a
+      href="/install"
+      class="inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-shadow ring-1 ring-transparent hover:bg-accent/90 hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)]"
+    >
+      Install RelayKit
+      <Icon name="arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
+</DocsLayout>

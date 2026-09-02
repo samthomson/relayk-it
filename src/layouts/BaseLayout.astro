@@ -1,0 +1,93 @@
+---
+import '@/styles/global.css';
+import '@fontsource-variable/jetbrains-mono';
+import SiteHeader from '@/components/SiteHeader.astro';
+import SiteFooter from '@/components/SiteFooter.astro';
+import Sidebar from '@/components/Sidebar.astro';
+import Icon from '@/components/Icon.astro';
+import { getNav } from '@/lib/nav';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Home page uses a bare title. */
+  bareTitle?: boolean;
+}
+
+const { title, description, bareTitle = false } = Astro.props;
+const pageTitle = bareTitle ? title : `RelayKit — ${title}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const sections = await getNav();
+
+// Plausible Analytics — build-time env config (empty domain = disabled).
+// PLAUSIBLE_SCRIPT_URL points at a self-hosted instance if ever needed.
+const PLAUSIBLE_DOMAIN = import.meta.env.PLAUSIBLE_DOMAIN ?? '';
+const PLAUSIBLE_SCRIPT = import.meta.env.PLAUSIBLE_SCRIPT_URL ?? 'https://plausible.io/js/script.js';
+const scriptSrc = PLAUSIBLE_DOMAIN ? `'self' ${new URL(PLAUSIBLE_SCRIPT).origin}` : "'self'";
+const csp = `default-src 'none'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; frame-src 'self' https:; font-src 'self'; base-uri 'self'; manifest-src 'self'; connect-src 'self' blob: https: wss:; img-src 'self' data: blob: https:; media-src 'self' https:`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-security-policy" content={csp} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline src="/theme-init.js"></script>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0c14" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RelayKit" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="/relaykit-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+  </head>
+  <body class="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
+    <SiteHeader currentPath={Astro.url.pathname} />
+
+    <!-- Mobile drawer -->
+    <div class="rk-drawer-backdrop fixed inset-0 z-50 bg-foreground/25 lg:hidden" data-drawer-backdrop aria-hidden="true"></div>
+    <div
+      id="site-drawer"
+      class="rk-drawer fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] overflow-y-auto border-r border-border bg-background px-5 py-6 lg:hidden"
+      data-drawer
+      data-open="false"
+      aria-hidden="true"
+    >
+      <div class="mb-6 flex items-center justify-between">
+        <span class="font-display text-xs uppercase tracking-[0.22em]">RelayKit</span>
+        <button
+          type="button"
+          class="inline-flex h-9 w-9 items-center justify-center text-muted-foreground hover:text-foreground"
+          data-drawer-close
+          aria-label="Close navigation menu"
+        >
+          <Icon name="x" class="h-5 w-5" />
+        </button>
+      </div>
+      <Sidebar sections={sections} currentPath={Astro.url.pathname} />
+    </div>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <script src="@/scripts/site.ts"></script>
+    {PLAUSIBLE_DOMAIN && <script is:inline defer data-domain={PLAUSIBLE_DOMAIN} src={PLAUSIBLE_SCRIPT}></script>}
+  </body>
+</html>

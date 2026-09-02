@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import DocsLayout from '@/layouts/DocsLayout.astro';
+import Icon from '@/components/Icon.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+const media = entry.data.media ?? [];
+const videos = media.filter((m) => /\.(mp4|webm|mov)$/i.test(m));
+const images = media.filter((m) => !/\.(mp4|webm|mov)$/i.test(m));
+---
+
+<DocsLayout title={entry.data.title} description={entry.data.description} section="Services" headings={headings}>
+  <div class="not-prose mb-8 flex flex-wrap items-center gap-3 text-xs">
+    <span class="border border-[rgba(118,82,168,0.5)] bg-[rgba(118,82,168,0.08)] px-2.5 py-1 font-bold uppercase tracking-wider text-[rgb(72,48,118)] dark:text-[rgba(196,181,253,0.95)]">
+      {entry.data.type}
+    </span>
+    {
+      entry.data.nips.map((nip) => (
+        <span class="border border-border px-2.5 py-1 font-semibold text-muted-foreground">{nip}</span>
+      ))
+    }
+    {
+      entry.data.repo && (
+        <a
+          href={entry.data.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-1 py-1 font-semibold text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+        >
+          <Icon name="external-link" class="h-3.5 w-3.5" />
+          Upstream project
+        </a>
+      )
+    }
+  </div>
+
+  <Content />
+
+  {
+    images.length > 0 && (
+      <div class="not-prose mt-10 space-y-6">
+        {images.map((src) => (
+          <img src={src} alt={`${entry.data.title} screenshot`} loading="lazy" class="w-full border border-border" />
+        ))}
+      </div>
+    )
+  }
+  {
+    videos.length > 0 && (
+      <div class="not-prose mt-10 space-y-6">
+        {videos.map((src) => (
+          <video src={src} controls muted loop playsinline preload="metadata" class="w-full border border-border" />
+        ))}
+      </div>
+    )
+  }
+
+  <div class="not-prose mt-12 border-t border-border pt-6">
+    <a
+      href="/install"
+      class="inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-shadow ring-1 ring-transparent hover:bg-accent/90 hover:ring-[rgba(118,82,168,0.85)] hover:shadow-[0_0_32px_-4px_rgba(90,60,140,0.55)]"
+    >
+      Deploy {entry.data.title}
+      <Icon name="arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
+</DocsLayout>
