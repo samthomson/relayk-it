@@ -16,7 +16,7 @@ Static **Astro 5** site, deployed as an **nsite** (NIP-5A static hosting on Nost
 - **Static-first, crawlable**: every page must render as real HTML at build time. No client-side routing, no UI frameworks. Interactivity lives in small vanilla TS scripts (`src/scripts/`) loaded as external modules.
 - **CSP**: pages ship `script-src 'self'` — **never inline scripts or inline event handlers**. Use `<script src="…">` or Astro-processed `<script>` tags (bundled to external files).
 - **Deployable as an nsite**: output must be plain static files in `dist/` (no server runtime). The nsyte publish script and `.nsite/config.json` assume this.
-- **Brand identity (do not drift)**: Ethnocentric display font, JetBrains Mono body, lilac/lavender accents (`src/lib/brandAccents.ts`, `rgba(118,82,168)` anchor), sharp corners (`--radius: 0`), the rotating Rubik's cube above the fold, light/dark themes. The cube is a faithful vanilla port of `@samthomson/rubix-loader` — preserve its math and timings exactly.
+- **Brand identity (do not drift)**: Ethnocentric display font, system mono stack (SF Mono/Menlo, matching the relaykit app) body, lilac/lavender accents (`src/lib/brandAccents.ts`, `rgba(118,82,168)` anchor), sharp corners (`--radius: 0`), the rotating Rubik's cube above the fold, light/dark themes. The cube is a faithful vanilla port of `@samthomson/rubix-loader` — preserve its math and timings exactly.
 
 ## Project layout
 

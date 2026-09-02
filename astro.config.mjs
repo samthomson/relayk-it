@@ -18,4 +18,6 @@ export default defineConfig({
       assetsInlineLimit: 0,
     },
   },
+  // The floating dev toolbar is noise for this site — never needed it.
+  devToolbar: { enabled: false },
 });

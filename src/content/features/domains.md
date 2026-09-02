@@ -1,10 +1,11 @@
 ---
 title: Domains & SSL
-description: Give every service its own domain. Let's Encrypt certificates in production, no-SSL mode for local development, and painless domain changes later.
+description: Link any RelayKit service to a domain you already own. Let's Encrypt certificates in production, no-SSL mode for local development, and painless domain changes later.
 order: 1
 ---
 
-Every service you deploy gets a domain. RelayKit wires the routing and certificates — you never hand-edit Traefik.
+You bring the domain — bought wherever you like — and RelayKit links any service to it, wiring the routing
+and certificates. You never hand-edit Traefik.
 
 ## Setting a domain at deploy time
 

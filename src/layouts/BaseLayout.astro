@@ -1,6 +1,5 @@
 ---
 import '@/styles/global.css';
-import '@fontsource-variable/jetbrains-mono';
 import SiteHeader from '@/components/SiteHeader.astro';
 import SiteFooter from '@/components/SiteFooter.astro';
 import Sidebar from '@/components/Sidebar.astro';
@@ -12,16 +11,18 @@ interface Props {
   description: string;
   /** Home page uses a bare title. */
   bareTitle?: boolean;
+  /** Exclude from search engines (temp/lab pages). */
+  noIndex?: boolean;
 }
 
-const { title, description, bareTitle = false } = Astro.props;
+const { title, description, bareTitle = false, noIndex = false } = Astro.props;
 const pageTitle = bareTitle ? title : `RelayKit — ${title}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const sections = await getNav();
 
-// Plausible Analytics — build-time env config (empty domain = disabled).
-// PLAUSIBLE_SCRIPT_URL points at a self-hosted instance if ever needed.
-const PLAUSIBLE_DOMAIN = import.meta.env.PLAUSIBLE_DOMAIN ?? '';
+// build-time env config (empty domain = disabled). PLAUSIBLE_SCRIPT_URL
+// points at a self-hosted instance if ever needed.
+const PLAUSIBLE_DOMAIN = import.meta.env.PROD ? (import.meta.env.PLAUSIBLE_DOMAIN ?? '') : '';
 const PLAUSIBLE_SCRIPT = import.meta.env.PLAUSIBLE_SCRIPT_URL ?? 'https://plausible.io/js/script.js';
 const scriptSrc = PLAUSIBLE_DOMAIN ? `'self' ${new URL(PLAUSIBLE_SCRIPT).origin}` : "'self'";
 const csp = `default-src 'none'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; frame-src 'self' https:; font-src 'self'; base-uri 'self'; manifest-src 'self'; connect-src 'self' blob: https: wss:; img-src 'self' data: blob: https:; media-src 'self' https:`;
@@ -39,9 +40,9 @@ const csp = `default-src 'none'; script-src ${scriptSrc}; style-src 'self' 'unsa
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <script is:inline src="/theme-init.js"></script>
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0a0c14" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0d0b0f" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="RelayKit" />

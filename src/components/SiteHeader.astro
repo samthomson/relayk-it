@@ -9,10 +9,10 @@ const { currentPath = '/' } = Astro.props;
 const GITHUB_URL = 'https://github.com/samthomson/relaykit';
 
 const links = [
-  { label: 'Docs', href: '/introduction' },
   { label: 'Services', href: '/services' },
+  { label: 'Apps', href: '/apps/hello-world' },
+  { label: 'Docs', href: '/introduction' },
   { label: 'Install', href: '/install' },
-  { label: 'Changelog', href: '/changelog' },
 ];
 
 const normalize = (href: string) => (href.endsWith('/') && href !== '/' ? href.slice(0, -1) : href);
@@ -34,8 +34,12 @@ const current = normalize(currentPath);
       <Icon name="menu" class="h-5 w-5" />
     </button>
 
-      <img src="/favicon.svg" alt="" class="h-6 w-6 translate-y-[1px]" width="24" height="24" />
-      <span class="rk-wordmark font-display text-sm tracking-[0.22em] uppercase">RelayKit</span>
+    <a href="/" class="flex items-center gap-2.5" aria-label="RelayKit home">
+      <img src="/favicon.svg" alt="" class="h-8 w-8" width="32" height="32" />
+      <span
+        class="rk-wordmark font-display text-xl tracking-[0.22em] uppercase translate-y-[2.4px]"
+        >RelayKit</span
+      >
     </a>
 
     <nav class="ml-6 hidden items-center gap-6 text-sm md:flex" aria-label="Main">

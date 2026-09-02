@@ -18,9 +18,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['JetBrains Mono Variable', 'ui-monospace', 'monospace'],
-        mono: ['JetBrains Mono Variable', 'ui-monospace', 'monospace'],
-        display: ['Ethnocentric', 'JetBrains Mono Variable', 'monospace'],
+        sans: ['SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'ui-monospace', 'monospace'],
+        mono: ['SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'ui-monospace', 'monospace'],
+        display: ['Ethnocentric', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',

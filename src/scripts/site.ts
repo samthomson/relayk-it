@@ -41,6 +41,7 @@ function setupDrawer(): void {
   });
 }
 
+
 /* ---------------- Theme toggle ---------------- */
 
 function setupThemeToggle(): void {
@@ -97,7 +98,6 @@ function init(): void {
   setupThemeToggle();
   setupToc();
 }
-
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {

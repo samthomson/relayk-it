@@ -20,7 +20,8 @@ const byOrder = <T extends { data: { order: number } }>(a: T, b: T): number => a
 
 /**
  * The docs sidebar / mobile drawer tree. Sections are assembled from the
- * content collections so adding a page file adds it to the nav.
+ * content collections so adding a page file adds it to the nav. Reference
+ * pages (e.g. the changelog) are appended to the Guides section.
  */
 export async function getNav(): Promise<NavSection[]> {
   const [pages, features, services, apps, guides] = await Promise.all([
@@ -34,7 +35,7 @@ export async function getNav(): Promise<NavSection[]> {
   const startPages: Page[] = pages.filter((p) => p.data.section === 'start').sort(byOrder);
   const referencePages: Page[] = pages.filter((p) => p.data.section === 'reference').sort(byOrder);
 
-  const sections: NavSection[] = [
+  return [
     {
       label: 'Getting Started',
       items: startPages.map((p) => ({ label: p.data.title, href: `/${p.id}` })),
@@ -56,15 +57,12 @@ export async function getNav(): Promise<NavSection[]> {
     },
     {
       label: 'Guides',
-      items: guides.sort(byOrder).map((g: Guide) => ({ label: g.data.title, href: `/docs/${g.id}` })),
+      items: [
+        ...guides.sort(byOrder).map((g: Guide) => ({ label: g.data.title, href: `/docs/${g.id}` })),
+        ...referencePages.map((p) => ({ label: p.data.title, href: `/${p.id}` })),
+      ],
     },
-    {
-      label: 'Reference',
-      items: referencePages.map((p) => ({ label: p.data.title, href: `/${p.id}` })),
-    },
-  ];
-
-  return sections.filter((section) => section.items.length > 0 || section.label === 'Services');
+  ].filter((section) => section.items.length > 0);
 }
 
 /** Flattened tree for prev/next page navigation. */

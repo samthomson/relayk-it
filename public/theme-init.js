@@ -1,5 +1,6 @@
 /* Applied synchronously before first paint to avoid a theme flash.
- * Reads the legacy app config key first so returning visitors keep their choice. */
+ * Reads the legacy app config key first so returning visitors keep their choice.
+ * Also restores the font-preview mode (mono default). */
 (function () {
   var theme = null;
   try {
@@ -18,4 +19,5 @@
     theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
   document.documentElement.classList.toggle('dark', theme === 'dark');
+
 })();

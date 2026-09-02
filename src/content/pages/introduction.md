@@ -22,6 +22,10 @@ Browser → RelayKit App → Dokploy API
 - **Self-hosters** — run your own relay, Blossom server or nsite gateway without hand-rolling Docker Compose, reverse proxies and certificates.
 - **Developers** — spin up disposable Nostr test infrastructure in seconds. Point your test client at `relay.your-local-domain.test` and go.
 
+Link any service to a **domain you already own** — you buy domains wherever you like, RelayKit just wires
+them up: routing, and SSL handled automatically (Let's Encrypt in production, no-SSL mode for local dev).
+See [Domains & SSL](/features/domains).
+
 ## What you can deploy
 
 Every service in RelayKit is a curated preset: a Docker Compose template with sensible defaults, exposed configuration, and automatic domain routing. See the [services overview](/services) for the full list — currently relays ([strfry](/services/strfry), [nostr-rs-relay](/services/nostr-rs-relay), [chapar](/services/chapar)), [Blossom](/services/blossom) media servers, [nPanel](/services/npanel) nsite gateways, [grasp](/services/grasp) git hosting, and [pulse](/services/pulse) notifications.
