@@ -17,21 +17,28 @@ npm run test     # astro check + build
 npm run build    # astro build → dist/
 ```
 
+## Deploying
+
+Put your bunker URL in `.env` once (copy it from your signing app):
+
+```
+NSITE_BUNKER='bunker://…'
+```
+
+Then:
+
+```bash
+npm run nsite:publish
+```
+
+That's it. The live site updates; the gateway picks it up within ~10 minutes (or immediately via nPanel's "refresh nsite content" action).
+
 ## Content authoring
 
 - Add a page: drop a `.md` file into the matching `src/content/<collection>/` directory with `title`, `description`, `order` frontmatter. It appears in the sidebar.
 - Screenshots/videos: put files in `public/media/`, reference from a service page's `media` frontmatter (rendered automatically) or inline in Markdown.
 - The changelog (`src/content/pages/changelog.md`) is maintained by hand — copy user-facing notes from `../relaykit/app/CHANGELOG.md` when cutting a release.
 
-## Deploying (nsite)
-
-```bash
-npm run nsite:publish
-```
-
-Builds `dist/` and uploads it with nsyte (NIP-5A). Unknown paths serve the generated `404.html`. Relays/servers are configured in `.nsite/config.json`; the publish script downloads a pinned nsyte binary into `.tools/`.
-
 ## Analytics
 
 Plausible Analytics is wired in via build-time env vars (see `.env.example`): set `PLAUSIBLE_DOMAIN` and rebuild. The CSP allows the script origin automatically. Leave it empty to build without tracking.
-

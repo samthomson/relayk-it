@@ -1,16 +1,32 @@
 #!/usr/bin/env bash
-# NIP-5A deploy via nsyte (official GitHub release binary — avoids JSR, which can 403 from Deno).
+# Deploy the site: builds with Astro, publishes via nsyte.
+# Signing key: NSITE_BUNKER in .env (bunker://… URL from your signing app).
+#
+# Extra nsyte args pass straight through, e.g. target a single server:
+#   npm run nsite:publish -- -s https://blossom.relayk.it
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
 ASTRO="${ROOT}/node_modules/.bin/astro"
-NSYTE_VERSION="0.25.0"
+NSYTE_VERSION="0.28.0"
 NSYTE_DIR="${ROOT}/.tools/nsyte-${NSYTE_VERSION}"
 NSYTE_BIN="${NSYTE_DIR}/nsyte"
 NSYTE_BASE="https://github.com/sandwichfarm/nsyte/releases/download/v${NSYTE_VERSION}"
 
 if [[ ! -x "$ASTRO" ]]; then
   echo "Run npm install first." >&2
+  exit 1
+fi
+
+if [[ -f .env ]]; then
+  set -a
+  # shellcheck disable=SC1091
+  . ./.env
+  set +a
+fi
+
+if [[ -z "${NSITE_BUNKER:-}" ]]; then
+  echo "Missing NSITE_BUNKER — add your bunker URL to .env (see .env.example)." >&2
   exit 1
 fi
 
@@ -35,21 +51,28 @@ ensure_nsyte() {
   chmod +x "$NSYTE_BIN"
 }
 
-"$ASTRO" build
-
-read -r -s -p "nsec, hex, or nbunksec (input hidden): " NSITE_SECRET
-echo
-
+"$ASTRO" build > /dev/null 2>&1
+echo "✓ Built $(find dist -name '*.html' | wc -l | tr -d ' ') pages"
 ensure_nsyte
 
-echo "Deploying with nsyte@${NSYTE_VERSION} (NIP-5A root manifest)…" >&2
-# Static multipage site: unknown paths serve the generated 404 page.
-# Secrets scan flag skips static media/asset false positives.
-"$NSYTE_BIN" deploy dist \
-  --sec "$NSITE_SECRET" \
-  --fallback=/404.html \
-  --verbose \
-  --skip-secrets-scan \
-  --sync
+LOG="$(mktemp)"
+trap 'rm -f "$LOG"' EXIT
 
-unset NSITE_SECRET
+if "$NSYTE_BIN" deploy dist \
+  --sec "$NSITE_BUNKER" \
+  --fallback=/404.html \
+  --skip-secrets-scan \
+  --sync \
+  "$@" >"$LOG" 2>&1; then
+  echo "✓ Deployed — https://relayk.it (gateway refreshes within ~10 min)"
+  # Errors are shown; warnings collapse to a single count.
+  grep -E '^\[ERROR\]|✗' "$LOG" | head -10 || true
+  WARNS=$(grep -c '^\[WARN\]' "$LOG" || true)
+  [[ "$WARNS" -gt 0 ]] && echo "($WARNS warnings suppressed)"
+else
+  echo "✗ Deploy failed:"
+  grep -E '^\[ERROR\]|✗' "$LOG" | head -20 || true
+  echo "—— last 15 lines ——" >&2
+  tail -15 "$LOG" >&2
+  exit 1
+fi
