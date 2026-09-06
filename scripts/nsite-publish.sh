@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # Deploy the site: builds with Astro, publishes via nsyte.
-# Signing key: NSITE_BUNKER in .env (bunker://… URL from your signing app).
+#
+# Signing: NSITE_BUNKER in .env holds a persistent nbunksec1… string
+# (minted once via `.tools/nsyte-0.28.0/nsyte ci 'bunker://…'`) — the same
+# client identity is presented on every deploy, so the bunker keeps accepting
+# it. A raw bunker:// URL also works but its secret is single-use.
 #
 # Extra nsyte args pass straight through, e.g. target a single server:
-#   npm run nsite:publish -- -s https://blossom.relayk.it
+#   npm run nsite:publish -- -s https://blossom.relayk.it -r wss://relay.samt.st
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
@@ -26,7 +30,8 @@ if [[ -f .env ]]; then
 fi
 
 if [[ -z "${NSITE_BUNKER:-}" ]]; then
-  echo "Missing NSITE_BUNKER — add your bunker URL to .env (see .env.example)." >&2
+  echo "Missing NSITE_BUNKER in .env — mint one once with:" >&2
+  echo "  ${NSYTE_DIR}/nsyte ci 'bunker://…'   # fresh URL from your signing app" >&2
   exit 1
 fi
 
@@ -55,21 +60,30 @@ ensure_nsyte() {
 echo "✓ Built $(find dist -name '*.html' | wc -l | tr -d ' ') pages"
 ensure_nsyte
 
-LOG="$(mktemp)"
-trap 'rm -f "$LOG"' EXIT
+DEPLOY_ARGS=(deploy dist --sec "$NSITE_BUNKER" --fallback=/404.html --skip-secrets-scan --non-interactive --sync)
 
-if "$NSYTE_BIN" deploy dist \
-  --sec "$NSITE_BUNKER" \
-  --fallback=/404.html \
-  --skip-secrets-scan \
-  --sync \
-  "$@" >"$LOG" 2>&1; then
+LOG="$(mktemp)"
+DEPLOY_PID=""
+trap 'rm -f "$LOG"; [[ -n "$DEPLOY_PID" ]] && kill "$DEPLOY_PID" 2>/dev/null || true' EXIT
+
+echo -n "⏳ Deploying (dots = progress, errors print at the end; Ctrl-C to abort) "
+
+"$NSYTE_BIN" "${DEPLOY_ARGS[@]}" "$@" >"$LOG" 2>&1 &
+DEPLOY_PID=$!
+
+while kill -0 "$DEPLOY_PID" 2>/dev/null; do
+  sleep 5
+  echo -n "."
+done
+
+if wait "$DEPLOY_PID"; then
+  echo ""
   echo "✓ Deployed — https://relayk.it (gateway refreshes within ~10 min)"
-  # Errors are shown; warnings collapse to a single count.
   grep -E '^\[ERROR\]|✗' "$LOG" | head -10 || true
   WARNS=$(grep -c '^\[WARN\]' "$LOG" || true)
   [[ "$WARNS" -gt 0 ]] && echo "($WARNS warnings suppressed)"
 else
+  echo ""
   echo "✗ Deploy failed:"
   grep -E '^\[ERROR\]|✗' "$LOG" | head -20 || true
   echo "—— last 15 lines ——" >&2

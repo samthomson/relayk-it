@@ -19,19 +19,20 @@ npm run build    # astro build → dist/
 
 ## Deploying
 
-Put your bunker URL in `.env` once (copy it from your signing app):
+One-time signing setup (persistent — the bunker secret stays valid because nsyte reuses its stored client key on every deploy):
 
-```
-NSITE_BUNKER='bunker://…'
+```bash
+.tools/nsyte-0.28.0/nsyte bunker connect 'bunker://…'   # fresh URL from your signing app
+.tools/nsyte-0.28.0/nsyte bunker use npub1yzfm42rzr3dj2h50flpvdl0uzrv22kv2y4ghve804w5xqu6lzqcqkyfxu5
 ```
 
-Then:
+Then, every deploy:
 
 ```bash
 npm run nsite:publish
 ```
 
-That's it. The live site updates; the gateway picks it up within ~10 minutes (or immediately via nPanel's "refresh nsite content" action).
+That's it. The live site updates; the gateway picks it up within ~10 minutes (or immediately via nPanel's "refresh nsite content" action). Scope a run to specific servers/relays with passthrough args, e.g. `npm run nsite:publish -- -s https://blossom.relayk.it`.
 
 ## Content authoring
 
