@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: RelayKit is a self-hosted control panel for Nostr infrastructure — deploy relays, Blossom servers, nsite gateways and more from one dashboard on your own server.
+description: RelayKit is a self-hosted control panel for Nostr infrastructure — deploy relays, Blossom servers, nsite gateways etc. from one dashboard on your own server.
 section: start
 order: 1
 ---
