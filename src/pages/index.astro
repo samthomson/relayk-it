@@ -114,27 +114,36 @@ const services = [
   },
 ] as const;
 
-const steps = [
+const apps = [
   {
-    title: 'Run install script on VPS',
-    body: 'One command installs RelayKit on any server',
-    bg: 'rgba(118,82,168,0.35)',
-    border: 'rgba(90,60,140,0.85)',
-    shadow: 'rgba(72,48,118,0.45)',
+    title: 'Hello World',
+    body: 'Scheduled Nostr posting — write now, publish later, to your own relays or any',
+    href: '/apps/hello-world',
+    icon: 'calendar-clock',
   },
   {
-    title: 'Auth with NIP-07 browser extension',
-    body: 'Sign in using your Nostr identity',
-    bg: 'rgba(128,92,178,0.38)',
-    border: 'rgba(98,68,155,0.88)',
-    shadow: 'rgba(82,58,128,0.45)',
+    title: 'Relay explorer',
+    body: 'Inspect live relay events',
+    href: '/apps/relay-explorer',
+    icon: 'server',
   },
   {
-    title: 'Deploy and manage services',
-    body: 'Monitor logs, update configs, manage domains',
-    bg: 'rgba(138,108,188,0.38)',
-    border: 'rgba(108,78,158,0.88)',
-    shadow: 'rgba(92,68,138,0.45)',
+    title: 'Blossom explorer',
+    body: 'Browse and verify Blossom blobs',
+    href: '/apps/blossom-explorer',
+    icon: 'image',
+  },
+  {
+    title: 'nsite explorer',
+    body: 'Inspect and debug nsite data',
+    href: '/apps/nsite-explorer',
+    icon: 'globe',
+  },
+  {
+    title: 'grasp explorer',
+    body: 'Browse git repos hosted on a grasp server',
+    href: '/apps/grasp-explorer',
+    icon: 'git-branch',
   },
 ] as const;
 ---
@@ -215,6 +224,20 @@ const steps = [
         borrowed. RelayKit exists to make owning it trivial — your server, your domains, your data.
         Sovereignty as <s class="text-muted-foreground/70">a</s> <strong class="font-bold text-foreground">your</strong> service.
       </p>
+    </div>
+  </section>
+
+  <!-- Architecture diagram -->
+  <section class="border-t border-border px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-4 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">One server, the whole stack</span>
+      </h2>
+      <p class="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
+        Relays, Blossom, git hosting, nsites — one box under RelayKit&rsquo;s care. Clients reach them
+        from anywhere, over open protocols.
+      </p>
+      <ArchDiagram />
     </div>
   </section>
 
@@ -311,98 +334,40 @@ const steps = [
     </div>
   </section>
 
-  <!-- Architecture diagram -->
-  <section class="border-t border-border px-6 py-20">
-    <div class="mx-auto max-w-5xl">
-      <h2 class="mb-4 text-center text-3xl font-bold text-foreground">
-        <span class="rk-section-title inline-block">One server, the whole stack</span>
-      </h2>
-      <p class="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
-        Relays, Blossom, git hosting, nsites — one box under RelayKit&rsquo;s care. Clients reach them
-        from anywhere, over open protocols.
-      </p>
-      <ArchDiagram />
-    </div>
-  </section>
-
   <!-- Bundled apps -->
   <section class="border-t border-border px-6 py-20">
     <div class="mx-auto max-w-4xl">
       <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
         <span class="rk-section-title inline-block">Comes with apps</span>
       </h2>
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="rk-card-hover border border-border bg-card/80 px-6 pb-6 pt-8" style={rkStyle(6)}>
-          <div
-            class="rk-icon-tile flex h-10 w-10 items-center justify-center border bg-background/50"
-            style={rkTileStyle(6)}
-          >
-            <Icon name="calendar-clock" class="h-5 w-5" style={`color: ${brandAccent(6).base}`} />
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-foreground">Hello World</h3>
-          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-            A standalone Nostr client included with every install. Write posts, attach images,
-            schedule them for later — published straight to your own relays (or any).
-          </p>
-          <a
-            href="/apps/hello-world"
-            class="rk-link mt-3 inline-flex items-center gap-1.5 border-b-2 border-[rgba(118,82,168,0.4)] pb-0.5 text-xs font-semibold uppercase tracking-wider"
-          >
-            More about Hello World
-            <Icon name="arrow-right" class="h-3 w-3" />
-          </a>
-        </div>
-        <div class="rk-card-hover border border-border bg-card/80 px-6 pb-6 pt-8" style={rkStyle(7)}>
-          <div
-            class="rk-icon-tile flex h-10 w-10 items-center justify-center border bg-background/50"
-            style={rkTileStyle(7)}
-          >
-            <Icon name="compass" class="h-5 w-5" style={`color: ${brandAccent(7).base}`} />
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-foreground">Explorers</h3>
-          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Read-only windows into everything you run — events on your relays, media on your Blossom,
-            sites on your gateways, repos on your git host. See what your infrastructure is actually
-            doing.
-          </p>
-          <a
-            href="/apps/relay-explorer"
-            class="rk-link mt-3 inline-flex items-center gap-1.5 border-b-2 border-[rgba(118,82,168,0.4)] pb-0.5 text-xs font-semibold uppercase tracking-wider"
-          >
-            More about the explorers
-            <Icon name="arrow-right" class="h-3 w-3" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="overflow-hidden px-6 py-20">
-    <div class="mx-auto max-w-4xl">
-      <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
-        <span class="rk-section-title inline-block">How it works</span>
-      </h2>
-      <div class="space-y-12">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {
-          steps.map((step, i) => (
-            <div class="flex items-start gap-6">
+          apps.map((a, i) => (
+            <a
+              href={a.href}
+              class="rk-card-hover block border border-border bg-card/80 px-5 pb-5 pt-6"
+              style={{ '--rk-card-base': brandAccent(i).base, '--rk-card-glow': brandAccent(i).glow }}
+            >
               <div
-                class="flex h-10 w-10 flex-shrink-0 items-center justify-center border text-sm font-bold text-foreground"
-                style={`background: ${step.bg}; border-color: ${step.border}; box-shadow: 0 0 22px -4px ${step.shadow};`}
+                class="rk-icon-tile flex h-9 w-9 items-center justify-center border bg-background/50"
+                style={{ borderColor: brandAccent(i).base, '--rk-icon-glow': brandAccent(i).glow }}
               >
-                {i + 1}
+                <Icon name={a.icon} class="h-4.5 w-4.5 h-[18px] w-[18px]" style={`color: ${brandAccent(i).base}`} />
               </div>
-              <div class="pt-1">
-                <h3 class="mb-2 text-lg font-semibold text-foreground">{step.title}</h3>
-                <p class="text-muted-foreground">{step.body}</p>
-              </div>
-            </div>
+              <h3 class="mt-3 text-base font-semibold text-foreground">{a.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
+            </a>
           ))
         }
       </div>
+      <p class="mt-8 text-center text-sm text-muted-foreground">
+        And when something happens worth knowing about:{' '}
+        <a href="/services/pulse" class="rk-link text-foreground">pulse</a> pushes mentions, replies, zaps
+        and DMs straight to your phone.
+      </p>
     </div>
   </section>
+
 
   <!-- Final CTA -->
   <section class="relative isolate border-t border-border px-6 py-24 sm:py-32">
