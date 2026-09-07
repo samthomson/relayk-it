@@ -22,29 +22,34 @@ const rkTileStyle = (index: number): StyleRecord => ({
 
 const features = [
   {
-    icon: 'terminal',
-    title: 'One install script',
-    body: 'Run on any VPS with a single command',
+    icon: 'rocket',
+    title: 'One-command install',
+    body: 'A single script provisions the whole stack on any VPS',
   },
   {
     icon: 'box',
-    title: 'Run many services',
-    body: 'Deploy as many nostr services (relays, Blossoms, nsites) as needed',
-  },
-  {
-    icon: 'layers',
-    title: 'Group into projects / envs',
-    body: 'Organize services by project or environment',
+    title: 'Run NOSTR services',
+    body: 'Relays, Blossom media servers, nsite gateways, git hosting, notifications — as many as you want',
   },
   {
     icon: 'globe',
-    title: 'Link your domains',
-    body: 'Connect custom domains to your services',
+    title: 'Use your own domains',
+    body: 'Link any service to a domain you already own; routing and SSL handled for you',
+  },
+  {
+    icon: 'layers',
+    title: 'Projects & environments',
+    body: 'Organise services by project or environment',
   },
   {
     icon: 'key',
-    title: 'NIP-07 auth',
-    body: 'Sign in with your existing Nostr identity',
+    title: 'NIP-07 sign-in',
+    body: 'Your Nostr identity is the login — no passwords, no user management. Use your existing Nostr browser extension.',
+  },
+  {
+    icon: 'refresh-cw',
+    title: 'One-click updates',
+    body: 'Pull the latest version from the dashboard when you choose — services keep running. 100% uptime.',
   },
 ] as const;
 
@@ -212,11 +217,11 @@ const steps = [
     </div>
   </section>
 
-  <!-- What it does -->
+  <!-- What's in the kit -->
   <section class="border-t border-border px-6 py-20">
     <div class="container mx-auto">
       <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
-        <span class="rk-section-title inline-block">What it does</span>
+        <span class="rk-section-title inline-block">What&rsquo;s in the kit</span>
       </h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {
