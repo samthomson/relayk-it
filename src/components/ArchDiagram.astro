@@ -1,0 +1,207 @@
+---
+/**
+ * Architecture diagram — your server, RelayKit running on it and containing
+ * the services it provides (brand colours from the Rubik's-cube palette),
+ * clients connecting from anywhere with TLS shields on the links.
+ *
+ * Two layouts, zero JS: wide (md+) and stacked (below md). Pure inline SVG,
+ * theme-aware via the design tokens. NOT a raster/gif on purpose: stays crisp
+ * at any scale, themes with the site, animates, and remains accessible.
+ */
+
+interface Tile {
+  label: string;
+  sub: string;
+  color: string;
+}
+
+const tiles: Tile[] = [
+  { label: 'strfry relay', sub: 'wss://relay.…', color: '#FBBF24' },
+  { label: 'nostr-rs-relay', sub: 'wss://relay.…', color: '#F87171' },
+  { label: 'blossom', sub: 'https://cdn.…', color: '#E879F9' },
+  { label: 'ngit', sub: 'git.yourdomain', color: '#A78BFA' },
+  { label: 'nsite', sub: 'yourdomain.com', color: '#71717A' },
+  { label: 'nsite', sub: 'otherdomain.com', color: '#71717A' },
+];
+
+const clients = [
+  { label: 'Mobile', apps: 'Primal · Amethyst', proto: 'wss://' },
+  { label: 'Desktop', apps: 'Jumble · Ditto', proto: 'wss:// https://' },
+  { label: 'Command line', apps: 'ngit · nsyte', proto: 'git · blossom' },
+  { label: 'IoT', apps: 'plants · weather', proto: 'wss://' },
+];
+---
+
+<!-- Wide layout: clients left → server right (md and up) -->
+<div class="hidden overflow-x-auto md:block">
+  <svg
+    viewBox="0 0 1000 480"
+    class="mx-auto aspect-[1000/480] min-w-[760px] max-w-4xl w-full"
+    role="img"
+    aria-label="Architecture: RelayKit runs on your server and provides relays, a Blossom server, git hosting and two nsites; mobile, desktop, command-line and IoT clients connect over TLS-secured open protocols."
+  >
+    {/* Connectors + TLS shields */}
+    {
+      [110, 190, 270, 350].map((sy) => (
+        <path d={`M 230 80 H 258 V ${sy} H 300`} fill="none" stroke="rgba(118, 82, 168, 0.65)" stroke-width="1.5" class="arch-flow" />
+      ))
+    }
+    {
+      [110, 190, 270, 350].map((sy) => (
+        <path
+          d={`M 268 ${sy - 9} l 7 3 v 5 c 0 4.5 -3 7.5 -7 9.5 c -4 -2 -7 -5 -7 -9.5 v -5 z`}
+          fill="rgba(118, 82, 168, 0.15)"
+          stroke="rgba(118, 82, 168, 0.85)"
+          stroke-width="1.2"
+        />
+      ))
+    }
+
+    {/* Client cards */}
+    {
+      clients.map((c, i) => (
+        <g>
+          <rect x="30" y={40 + i * 110} width="200" height="80" fill="hsl(var(--card))" stroke="hsl(var(--border))"></rect>
+          <text x="46" y={40 + i * 110 + 27} class="arch-label" fill="hsl(var(--foreground))">{c.label}</text>
+          <text x="46" y={40 + i * 110 + 47} class="arch-sub" fill="hsl(var(--muted-foreground))">{c.apps}</text>
+          <text x="46" y={40 + i * 110 + 66} class="arch-proto" fill="rgba(118, 82, 168, 0.9)">{c.proto}</text>
+        </g>
+      ))
+    }
+
+    {/* Server */}
+    <rect x="300" y="30" width="670" height="420" fill="hsl(var(--card))" stroke="hsl(var(--foreground))" stroke-opacity="0.35"></rect>
+    <text x="320" y="62" class="arch-title" fill="hsl(var(--foreground))">YOUR SERVER</text>
+
+    {/* RelayKit — contains the services it provides */}
+    <rect x="320" y="84" width="630" height="330" fill="rgba(118, 82, 168, 0.06)" stroke="#A78BFA" stroke-opacity="0.8" stroke-width="1.5"></rect>
+    <text x="336" y="112" class="arch-kit" fill="#A78BFA">RELAYKIT</text>
+    <text x="934" y="112" text-anchor="end" class="arch-sub" fill="hsl(var(--muted-foreground))">deploy · manage · update</text>
+
+    {/* Service tiles, inside the RelayKit region */}
+    {
+      tiles.map((t, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 336 + col * 200;
+        const y = 132 + row * 130;
+        return (
+          <g>
+            <rect x={x} y={y} width="178" height="104" fill={t.color} fill-opacity="0.07" stroke={t.color} stroke-opacity="0.85"></rect>
+            <rect x={x} y={y} width="178" height="4" fill={t.color} fill-opacity="0.9"></rect>
+            <text x={x + 16} y={y + 40} class="arch-tile-label" fill={t.color === '#71717A' ? 'hsl(var(--foreground))' : t.color}>{t.label}</text>
+            <text x={x + 16} y={y + 64} class="arch-sub" fill="hsl(var(--muted-foreground))">{t.sub}</text>
+          </g>
+        );
+      })
+    }
+  </svg>
+</div>
+
+<!-- Stacked layout: clients above → server below (below md) -->
+<div class="md:hidden">
+  <svg
+    viewBox="0 0 480 720"
+    class="mx-auto aspect-[480/720] w-full"
+    role="img"
+    aria-label="Architecture: RelayKit runs on your server and provides relays, a Blossom server, git hosting and two nsites; mobile, desktop, command-line and IoT clients connect over TLS-secured open protocols."
+  >
+    {/* Client chips 2×2 */}
+    {
+      clients.map((c, i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 20 + col * 230;
+        const y = 20 + row * 78;
+        return (
+          <g>
+            <rect x={x} y={y} width="210" height="64" fill="hsl(var(--card))" stroke="hsl(var(--border))"></rect>
+            <text x={x + 14} y={y + 24} class="arch-label" fill="hsl(var(--foreground))">{c.label}</text>
+            <text x={x + 14} y={y + 42} class="arch-sub" fill="hsl(var(--muted-foreground))">{c.apps}</text>
+            <text x={x + 14} y={y + 58} class="arch-proto" fill="rgba(118, 82, 168, 0.9)">{c.proto}</text>
+          </g>
+        );
+      })
+    }
+
+    {/* Bus down into the server, with TLS shield */}
+    <path d="M 125 176 H 240 V 196 H 240 V 210" fill="none" stroke="rgba(118, 82, 168, 0.65)" stroke-width="1.5" class="arch-flow"></path>
+    <path d="M 355 176 H 240" fill="none" stroke="rgba(118, 82, 168, 0.65)" stroke-width="1.5" class="arch-flow"></path>
+    <path d="M 240 186 l 7 3 v 5 c 0 4.5 -3 7.5 -7 9.5 c -4 -2 -7 -5 -7 -9.5 v -5 z" fill="rgba(118, 82, 168, 0.15)" stroke="rgba(118, 82, 168, 0.85)" stroke-width="1.2" transform="translate(0, -14)"></path>
+
+    {/* Server */}
+    <rect x="20" y="210" width="440" height="490" fill="hsl(var(--card))" stroke="hsl(var(--foreground))" stroke-opacity="0.35"></rect>
+    <text x="36" y="242" class="arch-title" fill="hsl(var(--foreground))">YOUR SERVER</text>
+
+    {/* RelayKit region containing the services */}
+    <rect x="36" y="260" width="408" height="416" fill="rgba(118, 82, 168, 0.06)" stroke="#A78BFA" stroke-opacity="0.8" stroke-width="1.5"></rect>
+    <text x="52" y="288" class="arch-kit" fill="#A78BFA">RELAYKIT</text>
+
+    {/* Tiles 2×3 inside the region */}
+    {
+      tiles.map((t, i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const x = 52 + col * 196;
+        const y = 306 + row * 118;
+        return (
+          <g>
+            <rect x={x} y={y} width="180" height="100" fill={t.color} fill-opacity="0.07" stroke={t.color} stroke-opacity="0.85"></rect>
+            <rect x={x} y={y} width="180" height="4" fill={t.color} fill-opacity="0.9"></rect>
+            <text x={x + 14} y={y + 38} class="arch-tile-label" fill={t.color === '#71717A' ? 'hsl(var(--foreground))' : t.color}>{t.label}</text>
+            <text x={x + 14} y={y + 62} class="arch-sub" fill="hsl(var(--muted-foreground))">{t.sub}</text>
+          </g>
+        );
+      })
+    }
+  </svg>
+</div>
+
+<style>
+  .arch-title {
+    font-family: 'Ethnocentric', 'SFMono-Regular', Menlo, monospace;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+  }
+  .arch-kit {
+    font-family: 'Ethnocentric', 'SFMono-Regular', Menlo, monospace;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
+  .arch-label {
+    font-family: 'SFMono-Regular', Menlo, monospace;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .arch-tile-label {
+    font-family: 'SFMono-Regular', Menlo, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .arch-sub {
+    font-family: 'SFMono-Regular', Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+  .arch-proto {
+    font-family: 'SFMono-Regular', Menlo, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .arch-flow {
+    stroke-dasharray: 6 6;
+    animation: arch-dash 1.4s linear infinite;
+  }
+  @keyframes arch-dash {
+    to {
+      stroke-dashoffset: -12;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .arch-flow {
+      animation: none;
+    }
+  }
+</style>

@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import NostrEventsBackground from '@/components/NostrEventsBackground.astro';
 import Icon from '@/components/Icon.astro';
+import ArchDiagram from '@/components/ArchDiagram.astro';
 import { brandAccent } from '@/lib/brandAccents';
 type StyleRecord = Record<string, string>;
 
@@ -310,26 +311,69 @@ const steps = [
     </div>
   </section>
 
-  <!-- Hello World -->
+  <!-- Architecture diagram -->
   <section class="border-t border-border px-6 py-20">
-    <div class="mx-auto max-w-3xl text-center">
-      <div
-        class="rk-icon-tile mx-auto mb-6 flex h-12 w-12 items-center justify-center border bg-background/60"
-        style={rkTileStyle(7)}
-      >
-        <Icon name="calendar-clock" class="h-6 w-6" style={`color: ${brandAccent(7).base}`} />
-      </div>
-      <h2 class="mb-4 text-3xl font-bold text-foreground">
-        <span class="rk-section-title inline-block">Comes with Hello World</span>
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-4 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">One server, the whole stack</span>
       </h2>
-      <p class="text-lg leading-relaxed text-muted-foreground">
-        A standalone Nostr client, included with every RelayKit install. Write posts and schedule them for later,
-        publishing straight to your own relays (or any).
+      <p class="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
+        Relays, Blossom, git hosting, nsites — one box under RelayKit&rsquo;s care. Clients reach them
+        from anywhere, over open protocols.
       </p>
-      <a href="/apps/hello-world" class="rk-link mt-6 inline-flex items-center gap-2 border-b-2 border-[rgba(118,82,168,0.4)] pb-1 text-sm">
-        More about Hello World
-        <Icon name="arrow-right" class="h-3.5 w-3.5" />
-      </a>
+      <ArchDiagram />
+    </div>
+  </section>
+
+  <!-- Bundled apps -->
+  <section class="border-t border-border px-6 py-20">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
+        <span class="rk-section-title inline-block">Comes with apps</span>
+      </h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rk-card-hover border border-border bg-card/80 px-6 pb-6 pt-8" style={rkStyle(6)}>
+          <div
+            class="rk-icon-tile flex h-10 w-10 items-center justify-center border bg-background/50"
+            style={rkTileStyle(6)}
+          >
+            <Icon name="calendar-clock" class="h-5 w-5" style={`color: ${brandAccent(6).base}`} />
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-foreground">Hello World</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            A standalone Nostr client included with every install. Write posts, attach images,
+            schedule them for later — published straight to your own relays (or any).
+          </p>
+          <a
+            href="/apps/hello-world"
+            class="rk-link mt-3 inline-flex items-center gap-1.5 border-b-2 border-[rgba(118,82,168,0.4)] pb-0.5 text-xs font-semibold uppercase tracking-wider"
+          >
+            More about Hello World
+            <Icon name="arrow-right" class="h-3 w-3" />
+          </a>
+        </div>
+        <div class="rk-card-hover border border-border bg-card/80 px-6 pb-6 pt-8" style={rkStyle(7)}>
+          <div
+            class="rk-icon-tile flex h-10 w-10 items-center justify-center border bg-background/50"
+            style={rkTileStyle(7)}
+          >
+            <Icon name="compass" class="h-5 w-5" style={`color: ${brandAccent(7).base}`} />
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-foreground">Explorers</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Read-only windows into everything you run — events on your relays, media on your Blossom,
+            sites on your gateways, repos on your git host. See what your infrastructure is actually
+            doing.
+          </p>
+          <a
+            href="/apps/relay-explorer"
+            class="rk-link mt-3 inline-flex items-center gap-1.5 border-b-2 border-[rgba(118,82,168,0.4)] pb-0.5 text-xs font-semibold uppercase tracking-wider"
+          >
+            More about the explorers
+            <Icon name="arrow-right" class="h-3 w-3" />
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
