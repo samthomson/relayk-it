@@ -123,29 +123,30 @@ const apps = [
   },
   {
     title: 'Relay explorer',
-    body: 'Inspect live relay events',
+    body: 'A phpMyAdmin-style console for any Nostr relay — inspect live events',
     href: '/apps/relay-explorer',
     icon: 'server',
   },
   {
     title: 'Blossom explorer',
-    body: 'Browse and verify Blossom blobs',
+    body: 'Browse and verify stored blobs — by hash, pubkey or type',
     href: '/apps/blossom-explorer',
     icon: 'image',
   },
   {
     title: 'nsite explorer',
-    body: 'Inspect and debug nsite data',
+    body: 'Inspect and debug nsite manifests and published files',
     href: '/apps/nsite-explorer',
     icon: 'globe',
   },
   {
     title: 'grasp explorer',
-    body: 'Browse git repos hosted on a grasp server',
+    body: 'Browse the git repos hosted on your grasp server',
     href: '/apps/grasp-explorer',
     icon: 'git-branch',
   },
 ] as const;
+
 ---
 
 <BaseLayout
@@ -363,7 +364,8 @@ const apps = [
       <p class="mt-8 text-center text-sm text-muted-foreground">
         And when something happens worth knowing about:{' '}
         <a href="/services/pulse" class="rk-link text-foreground">pulse</a> pushes mentions, replies, zaps
-        and DMs straight to your phone.
+        and DMs straight to your phone — no Google Play Services required, perfectly at home on
+        GrapheneOS.
       </p>
     </div>
   </section>

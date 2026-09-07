@@ -1,9 +1,11 @@
 ---
 title: Blossom explorer
-description: Inspect the media stored on your Blossom servers — uploads, blobs and their metadata at a glance.
+description: Browse and verify the blobs on any Blossom server — by hash, pubkey or type, with metadata at a glance.
 order: 2
 ---
 
-The Blossom explorer shows what's living on your [Blossom](/services/blossom) servers: uploaded files, their hashes and sizes, and who uploaded them.
+The phpMyAdmin-style companion for your media: every blob on a [Blossom](/services/blossom) server, browsable and verifiable — look up uploads by **hash, pubkey or type**, and inspect the descriptors (size, type, created-at) alongside the bytes.
 
-<!-- TODO: screenshot. Note any upload/delete affordances. -->
+Useful for confirming an upload landed, auditing who's storing what, or fetching the exact blob a kind 1063 event points at.
+
+<!-- TODO: screenshot of a blob listing + single blob detail. -->
