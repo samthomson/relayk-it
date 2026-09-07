@@ -3,10 +3,11 @@
  * Architecture diagram — your server, RelayKit running on it and containing
  * the services it provides (brand colours from the Rubik's-cube palette),
  * clients connecting from anywhere with TLS shields on the links.
+ * Multiple instances of the same service (two strfrys) show the pick-and-mix
+ * nature: run any combination, as many of each as you want.
  *
  * Two layouts, zero JS: wide (md+) and stacked (below md). Pure inline SVG,
- * theme-aware via the design tokens. NOT a raster/gif on purpose: stays crisp
- * at any scale, themes with the site, animates, and remains accessible.
+ * theme-aware via the design tokens.
  */
 
 interface Tile {
@@ -17,32 +18,31 @@ interface Tile {
 
 const tiles: Tile[] = [
   { label: 'strfry relay', sub: 'wss://relay.…', color: '#FBBF24' },
+  { label: 'strfry relay', sub: '+ spam plugins', color: '#FBBF24' },
   { label: 'nostr-rs-relay', sub: 'wss://relay.…', color: '#F87171' },
+  { label: 'dm relay', sub: 'private · NIP-17', color: '#FB923C' },
   { label: 'blossom', sub: 'https://cdn.…', color: '#E879F9' },
   { label: 'ngit', sub: 'git.yourdomain', color: '#A78BFA' },
   { label: 'nsite', sub: 'yourdomain.com', color: '#71717A' },
   { label: 'nsite', sub: 'otherdomain.com', color: '#71717A' },
   { label: 'pulse', sub: 'push notifs', color: '#A78BFA' },
-  { label: '+ more', sub: 'any docker service', color: 'HSL-BORDER' },
 ];
 
 const clients = [
   { label: 'Mobile', apps: 'Primal · Amethyst', proto: 'wss://' },
   { label: 'Desktop', apps: 'Jumble · Ditto', proto: 'wss:// https://' },
   { label: 'Command line', apps: 'ngit · nsyte', proto: 'git · blossom' },
-  { label: 'IoT', apps: 'plants · weather', proto: 'wss://' },
+  { label: 'IoT', apps: 'plants · weather', proto: 'wss://4815162342.108' },
 ];
-
-const isMore = (t: Tile) => t.color === 'HSL-BORDER';
 ---
 
 <!-- Wide layout: clients left → server right (md and up) -->
 <div class="hidden overflow-x-auto md:block">
   <svg
-    viewBox="0 0 1000 480"
-    class="mx-auto aspect-[1000/480] min-w-[760px] max-w-4xl w-full"
+    viewBox="0 0 1000 560"
+    class="mx-auto aspect-[1000/560] min-w-[760px] max-w-4xl w-full"
     role="img"
-    aria-label="Architecture: RelayKit runs on your server and provides relays, a Blossom server, git hosting, nsites and notifications; mobile, desktop, command-line and IoT clients connect over TLS-secured open protocols."
+    aria-label="Architecture: RelayKit runs on your server and provides whatever mix of services you choose — multiple relays, a Blossom server, git hosting, nsites and notifications; mobile, desktop, command-line and IoT clients connect over TLS-secured open protocols."
   >
     {/* Connectors + TLS shields */}
     {
@@ -74,32 +74,27 @@ const isMore = (t: Tile) => t.color === 'HSL-BORDER';
     }
 
     {/* Server */}
-    <rect x="300" y="30" width="670" height="420" fill="hsl(var(--card))" stroke="hsl(var(--foreground))" stroke-opacity="0.35"></rect>
+    <rect x="300" y="30" width="670" height="500" fill="hsl(var(--card))" stroke="hsl(var(--foreground))" stroke-opacity="0.35"></rect>
     <text x="320" y="62" class="arch-title" fill="hsl(var(--foreground))">YOUR SERVER</text>
 
     {/* RelayKit — contains the services it provides */}
-    <rect x="320" y="84" width="630" height="330" fill="rgba(118, 82, 168, 0.06)" stroke="#A78BFA" stroke-opacity="0.8" stroke-width="1.5"></rect>
+    <rect x="320" y="84" width="630" height="416" fill="rgba(118, 82, 168, 0.06)" stroke="#A78BFA" stroke-opacity="0.8" stroke-width="1.5"></rect>
     <text x="336" y="112" class="arch-kit" fill="#A78BFA">RELAYKIT</text>
     <text x="934" y="112" text-anchor="end" class="arch-sub" fill="hsl(var(--muted-foreground))">deploy · manage · update</text>
 
-    {/* Service tiles (4×2), inside the RelayKit region */}
+    {/* Service tiles (3×3), inside the RelayKit region */}
     {
       tiles.map((t, i) => {
-        const col = i % 4;
-        const row = Math.floor(i / 4);
-        const x = 336 + col * 152;
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const x = 336 + col * 196;
         const y = 132 + row * 124;
-        const more = isMore(t);
         return (
           <g>
-            {more ? (
-              <rect x={x} y={y} width="140" height="104" fill="none" stroke="hsl(var(--border))" stroke-dasharray="5 4"></rect>
-            ) : (
-              <rect x={x} y={y} width="140" height="104" fill={t.color} fill-opacity="0.07" stroke={t.color} stroke-opacity="0.85"></rect>
-            )}
-            {!more && <rect x={x} y={y} width="140" height="4" fill={t.color} fill-opacity="0.9"></rect>}
-            <text x={x + 14} y={y + 40} class="arch-tile-label" fill={more ? 'hsl(var(--muted-foreground))' : t.color === '#71717A' ? 'hsl(var(--foreground))' : t.color}>{t.label}</text>
-            <text x={x + 14} y={y + 64} class="arch-sub" fill="hsl(var(--muted-foreground))">{t.sub}</text>
+            <rect x={x} y={y} width="180" height="104" fill={t.color} fill-opacity="0.07" stroke={t.color} stroke-opacity="0.85"></rect>
+            <rect x={x} y={y} width="180" height="4" fill={t.color} fill-opacity="0.9"></rect>
+            <text x={x + 16} y={y + 40} class="arch-tile-label" fill={t.color === '#71717A' ? 'hsl(var(--foreground))' : t.color}>{t.label}</text>
+            <text x={x + 16} y={y + 64} class="arch-sub" fill="hsl(var(--muted-foreground))">{t.sub}</text>
           </g>
         );
       })
@@ -110,10 +105,10 @@ const isMore = (t: Tile) => t.color === 'HSL-BORDER';
 <!-- Stacked layout: clients above → server below (below md) -->
 <div class="md:hidden">
   <svg
-    viewBox="0 0 480 830"
-    class="mx-auto aspect-[480/830] w-full"
+    viewBox="0 0 480 940"
+    class="mx-auto aspect-[480/940] w-full"
     role="img"
-    aria-label="Architecture: RelayKit runs on your server and provides relays, a Blossom server, git hosting, nsites and notifications; mobile, desktop, command-line and IoT clients connect over TLS-secured open protocols."
+    aria-label="Architecture: RelayKit runs on your server and provides whatever mix of services you choose — multiple relays, a Blossom server, git hosting, nsites and notifications; mobile, desktop, command-line and IoT clients connect over TLS-secured open protocols."
   >
     {/* Client chips 2×2 */}
     {
@@ -139,30 +134,25 @@ const isMore = (t: Tile) => t.color === 'HSL-BORDER';
     <path d="M 240 186 l 7 3 v 5 c 0 4.5 -3 7.5 -7 9.5 c -4 -2 -7 -5 -7 -9.5 v -5 z" fill="rgba(118, 82, 168, 0.15)" stroke="rgba(118, 82, 168, 0.85)" stroke-width="1.2" transform="translate(0, -14)"></path>
 
     {/* Server */}
-    <rect x="20" y="210" width="440" height="600" fill="hsl(var(--card))" stroke="hsl(var(--foreground))" stroke-opacity="0.35"></rect>
+    <rect x="20" y="210" width="440" height="710" fill="hsl(var(--card))" stroke="hsl(var(--foreground))" stroke-opacity="0.35"></rect>
     <text x="36" y="242" class="arch-title" fill="hsl(var(--foreground))">YOUR SERVER</text>
 
     {/* RelayKit region containing the services */}
-    <rect x="36" y="260" width="408" height="526" fill="rgba(118, 82, 168, 0.06)" stroke="#A78BFA" stroke-opacity="0.8" stroke-width="1.5"></rect>
+    <rect x="36" y="260" width="408" height="636" fill="rgba(118, 82, 168, 0.06)" stroke="#A78BFA" stroke-opacity="0.8" stroke-width="1.5"></rect>
     <text x="52" y="288" class="arch-kit" fill="#A78BFA">RELAYKIT</text>
 
-    {/* Tiles 2×4 inside the region */}
+    {/* Tiles 2×5 inside the region */}
     {
       tiles.map((t, i) => {
         const col = i % 2;
         const row = Math.floor(i / 2);
         const x = 52 + col * 196;
         const y = 306 + row * 118;
-        const more = isMore(t);
         return (
           <g>
-            {more ? (
-              <rect x={x} y={y} width="180" height="100" fill="none" stroke="hsl(var(--border))" stroke-dasharray="5 4"></rect>
-            ) : (
-              <rect x={x} y={y} width="180" height="100" fill={t.color} fill-opacity="0.07" stroke={t.color} stroke-opacity="0.85"></rect>
-            )}
-            {!more && <rect x={x} y={y} width="180" height="4" fill={t.color} fill-opacity="0.9"></rect>}
-            <text x={x + 14} y={y + 38} class="arch-tile-label" fill={more ? 'hsl(var(--muted-foreground))' : t.color === '#71717A' ? 'hsl(var(--foreground))' : t.color}>{t.label}</text>
+            <rect x={x} y={y} width="180" height="100" fill={t.color} fill-opacity="0.07" stroke={t.color} stroke-opacity="0.85"></rect>
+            <rect x={x} y={y} width="180" height="4" fill={t.color} fill-opacity="0.9"></rect>
+            <text x={x + 14} y={y + 38} class="arch-tile-label" fill={t.color === '#71717A' ? 'hsl(var(--foreground))' : t.color}>{t.label}</text>
             <text x={x + 14} y={y + 62} class="arch-sub" fill="hsl(var(--muted-foreground))">{t.sub}</text>
           </g>
         );

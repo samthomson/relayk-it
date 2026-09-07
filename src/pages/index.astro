@@ -30,7 +30,7 @@ const features = [
   {
     icon: 'box',
     title: 'Run NOSTR services',
-    body: 'Relays, Blossom media servers, nsite gateways, git hosting, notifications — as many as you want',
+    body: 'Any mix of relays, Blossom, git, nsites, notifications — as many of each as you want, nothing you didn\u2019t ask for',
   },
   {
     icon: 'globe',
@@ -108,7 +108,7 @@ const services = [
     icon: 'bell',
     accent: 6,
     title: 'pulse',
-    body: 'Nostr notifications. Personal push notifications for mentions, replies, zaps, and DMs — straight to your device.',
+    body: 'Nostr notifications. Mentions, replies, zaps and DMs pushed to your phone — no Play Services, happy on GrapheneOS.',
     href: '/services/pulse',
     linkLabel: 'push notifications',
   },
@@ -123,7 +123,7 @@ const apps = [
   },
   {
     title: 'Relay explorer',
-    body: 'A phpMyAdmin-style console for any Nostr relay — inspect live events',
+    body: 'Live visibility into any Nostr relay — watch events, filters and kinds land in real time',
     href: '/apps/relay-explorer',
     icon: 'server',
   },
@@ -134,14 +134,14 @@ const apps = [
     icon: 'image',
   },
   {
-    title: 'nsite explorer',
-    body: 'Inspect and debug nsite manifests and published files',
-    href: '/apps/nsite-explorer',
+    title: 'nPanel',
+    body: 'Host nsites as normal websites on your own domain — with inspection and debugging built in',
+    href: '/apps/npanel',
     icon: 'globe',
   },
   {
     title: 'grasp explorer',
-    body: 'Browse the git repos hosted on your grasp server',
+    body: 'The front page for your git host — repos, branches and history, clone URLs ready',
     href: '/apps/grasp-explorer',
     icon: 'git-branch',
   },
@@ -235,10 +235,25 @@ const apps = [
         <span class="rk-section-title inline-block">One server, the whole stack</span>
       </h2>
       <p class="mx-auto mb-12 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
-        Relays, Blossom, git hosting, nsites — one box under RelayKit&rsquo;s care. Clients reach them
-        from anywhere, over open protocols.
+        Run whatever mix you want — one relay or five, media, git, sites, notifications — and skip
+        the rest. Clients reach them from anywhere, over open protocols.
       </p>
       <ArchDiagram />
+    </div>
+  </section>
+
+  <!-- One script -->
+  <section class="border-t border-border px-6 py-20">
+    <div class="mx-auto max-w-2xl">
+      <div class="border border-border bg-[rgb(24,24,30)] p-5 text-sm leading-7 text-[rgb(226,226,236)] dark:bg-[hsl(270,7%,11%)] dark:text-[rgb(230,226,238)]">
+        <div><span class="text-[rgb(196,181,253)]">$</span> git clone https://github.com/samthomson/relaykit</div>
+        <div><span class="text-[rgb(196,181,253)]">$</span> cd relaykit && ./scripts/install.sh</div>
+        <div><span class="text-[rgb(196,181,253)]">$</span> <span class="animate-blink text-[rgb(196,181,253)]">&#9612;</span></div>
+      </div>
+      <p class="mt-4 text-center text-sm leading-relaxed text-muted-foreground">
+        Any VPS works — Vultr, DigitalOcean, Hetzner, even one you pay for in bitcoin. Point your DNS
+        at it, run the script, sign in with your Nostr key.
+      </p>
     </div>
   </section>
 
@@ -298,6 +313,10 @@ const apps = [
       <h2 class="mb-16 text-center text-3xl font-bold text-foreground">
         <span class="rk-section-title inline-block">What you can deploy</span>
       </h2>
+      <p class="mx-auto -mt-10 mb-12 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
+        Pick and mix — every service is independent and optional. RelayKit is not a monolith: it stays
+        exactly as light as the choices you make.
+      </p>
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {
           services.map((s) => (
@@ -361,12 +380,6 @@ const apps = [
           ))
         }
       </div>
-      <p class="mt-8 text-center text-sm text-muted-foreground">
-        And when something happens worth knowing about:{' '}
-        <a href="/services/pulse" class="rk-link text-foreground">pulse</a> pushes mentions, replies, zaps
-        and DMs straight to your phone — no Google Play Services required, perfectly at home on
-        GrapheneOS.
-      </p>
     </div>
   </section>
 
